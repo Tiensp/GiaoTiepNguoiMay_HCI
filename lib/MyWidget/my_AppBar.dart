@@ -49,7 +49,7 @@ class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: new Center(
         child: new Text(
           title,
-          style: new TextStyle(fontSize: 25.0, color: Colors.white, fontWeight: FontWeight.bold),
+          style: new TextStyle(fontSize: 25.0, color: Colors.white, fontWeight: FontWeight.w600),
         ),
       ),
       decoration: new BoxDecoration(

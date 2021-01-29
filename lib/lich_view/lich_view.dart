@@ -42,9 +42,6 @@ class _LichViewState extends State<LichView> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: MyAppBar('Lịch', Color.fromARGB(255, 248, 249, 250)),
-      //drawer: MyDrawer(),
-      bottomNavigationBar: AppDocker(),
       body: Container(
         width: double.infinity,
         height: double.infinity,

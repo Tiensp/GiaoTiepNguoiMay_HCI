@@ -8,602 +8,279 @@
 
 import 'package:flutter/material.dart';
 import 'package:gtnm_hci/values/values.dart';
-import 'package:gtnm_hci/MyWidget/my_BottomNavigationBar.dart';
-import 'package:gtnm_hci/MyWidget/my_AppBar.dart';
-
+import 'package:gtnm_hci/MyWidget/request_model.dart';
 
 class MoiChaoGiaWidget extends StatelessWidget {
-  
+  final List<RequestModel> prepareData = [
+    RequestModel(
+        ID: '#8566',
+        companyName: 'Công ty CP NT',
+        approval: true,
+        bodyModel: RequestBodyModel(
+            title_work: 'Đặt lô mới',
+            productName: 'Vải lụa đẹp',
+            rePresentative: 'Ngọc Toàn',
+            Email: 'abc@gmail.com',
+            Phone: '0123456789',
+            requestDate: '22/12/2020',
+            recieveDate: '25/12/2020',
+            detail: '- 1 tấn')),
+    RequestModel(
+        ID: '#8566',
+        companyName: 'Công ty TMDV QN',
+        approval: false,
+        bodyModel: RequestBodyModel(
+            title_work: 'Đặt lô mới',
+            productName: 'Vải lụa đẹp',
+            rePresentative: 'Quang Nhân',
+            Email: 'abc@gmail.com',
+            Phone: '0123456789',
+            requestDate: '22/12/2020',
+            recieveDate: '25/12/2020',
+            detail: '- 1 tấn'))
+  ];
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: MyAppBar('Lịch', Color.fromARGB(255, 248, 249, 250)),
-      bottomNavigationBar: AppDocker(),
       body: Container(
         constraints: BoxConstraints.expand(),
         decoration: BoxDecoration(
           color: Color.fromARGB(255, 247, 250, 255),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              height: 13,
-              margin: EdgeInsets.only(left: 21, top: 17, right: 20),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      width: 33,
-                      height: 11,
-                      margin: EdgeInsets.only(top: 2),
-                      child: Image.asset(
-                        "assets/images/shape-36.png",
-                        fit: BoxFit.none,
-                      ),
-                    ),
-                  ),
-                  Spacer(),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      width: 19,
-                      height: 11,
-                      margin: EdgeInsets.only(right: 6),
-                      child: Image.asset(
-                        "assets/images/shape-41.png",
-                        fit: BoxFit.none,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      width: 17,
-                      height: 11,
-                      margin: EdgeInsets.only(right: 11),
-                      child: Image.asset(
-                        "assets/images/shape-7.png",
-                        fit: BoxFit.none,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      width: 21,
-                      height: 10,
-                      margin: EdgeInsets.only(top: 1, right: 2),
-                      child: Stack(
-                        alignment: Alignment.center,
+        child: ListView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: prepareData.length,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: EdgeInsets.all(8),
+              height: 200,
+              child: Card(
+                elevation: 2,
+                child: Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
                         children: [
-                          Positioned(
-                            top: 0,
-                            right: 0,
-                            child: Opacity(
-                              opacity: 0.35,
-                              child: Container(
-                                width: 21,
-                                height: 10,
-                                decoration: BoxDecoration(
-                                  border: Border.fromBorderSide(Borders.primaryBorder),
-                                  borderRadius: BorderRadius.all(Radius.circular(2.16667)),
-                                ),
-                                child: Container(),
-                              ),
+                          Text(
+                            'Cung cấp vải gấm',
+                            style: TextStyle(
+                              fontFamily: "Open Sans",
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
                             ),
                           ),
-                          Positioned(
-                            top: 2,
-                            right: 2,
-                            child: Container(
-                              width: 18,
-                              height: 7,
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                borderRadius: BorderRadius.all(Radius.circular(1.33333)),
-                              ),
-                              child: Container(),
+                          SizedBox(width: 80),
+                          Container(
+                            padding: EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                  color: Colors.transparent, width: 0.5),
+                              color: prepareData[index].approval
+                                  ? (Colors.greenAccent[100])
+                                  : (Colors.yellow[200]),
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(10.0),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      width: 1,
-                      height: 4,
-                      margin: EdgeInsets.only(top: 4),
-                      child: Opacity(
-                        opacity: 0.4,
-                        child: Image.asset(
-                          "assets/images/path-5.png",
-                          fit: BoxFit.none,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Container(
-                width: 194,
-                height: 29,
-                margin: EdgeInsets.only(left: 39, top: 20),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                        width: 20,
-                        height: 17,
-                        margin: EdgeInsets.only(top: 11),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                width: 20,
-                                height: 3,
-                                decoration: BoxDecoration(
-                                  gradient: Gradients.primaryGradient,
-                                  borderRadius: Radii.k1pxRadius,
-                                ),
-                                child: Container(),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                width: 13,
-                                height: 3,
-                                margin: EdgeInsets.only(left: 7, top: 4),
-                                decoration: BoxDecoration(
-                                  gradient: Gradients.primaryGradient,
-                                  borderRadius: Radii.k1pxRadius,
-                                ),
-                                child: Container(),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                width: 20,
-                                height: 3,
-                                margin: EdgeInsets.only(top: 4),
-                                decoration: BoxDecoration(
-                                  gradient: Gradients.primaryGradient,
-                                  borderRadius: Radii.k1pxRadius,
-                                ),
-                                child: Container(),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                        margin: EdgeInsets.only(left: 25),
-                        child: Text(
-                          "Mời chào giá",
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: AppColors.accentText,
-                            fontFamily: "Open Sans",
-                            fontWeight: FontWeight.w700,
-                            fontSize: 24,
-                            letterSpacing: -0.26385,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                width: 367,
-                height: 194,
-                margin: EdgeInsets.only(top: 53),
-                decoration: BoxDecoration(
-                  color: AppColors.primaryBackground,
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Container(
-                      height: 20,
-                      margin: EdgeInsets.only(left: 26, top: 19, right: 11),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Align(
-                            alignment: Alignment.topLeft,
                             child: Text(
-                              "Cung cấp vải gấm",
-                              textAlign: TextAlign.left,
+                              prepareData[index].approval
+                                  ? ('  Đã phê duyệt  ')
+                                  : ('Chưa phê duyệt'),
                               style: TextStyle(
                                 color: AppColors.primaryText,
                                 fontFamily: "Open Sans",
                                 fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                                letterSpacing: -0.1759,
-                              ),
-                            ),
-                          ),
-                          Spacer(),
-                          Align(
-                            alignment: Alignment.topLeft,
-                            child: Container(
-                              width: 107,
-                              height: 20,
-                              margin: EdgeInsets.only(top: 1),
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Positioned(
-                                    top: 0,
-                                    right: 0,
-                                    child: Container(
-                                      width: 107,
-                                      height: 20,
-                                      decoration: BoxDecoration(
-                                        color: Color.fromARGB(255, 178, 241, 189),
-                                        borderRadius: BorderRadius.all(Radius.circular(9.81355)),
-                                      ),
-                                      child: Container(),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: 1,
-                                    right: 12,
-                                    child: Text(
-                                      "Đã phê duyệt",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        color: AppColors.primaryText,
-                                        fontFamily: "Open Sans",
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12,
-                                        letterSpacing: -0.13193,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                fontSize: 13,
+                                letterSpacing: -0.16491,
                               ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                        margin: EdgeInsets.only(left: 29, top: 15),
-                        child: Opacity(
-                          opacity: 0.4,
-                          child: Text(
-                            "Chào giá cạnh tranh",
-                            textAlign: TextAlign.left,
+                      Padding(padding: EdgeInsets.only(bottom: 10)),
+                      Text(
+                        'Chào giá cạnh tranh',
+                        style: TextStyle(
+                          color: AppColors.secondaryText,
+                          fontFamily: "Open Sans",
+                          fontWeight: FontWeight.w400,
+                          fontSize: 13.5,
+                        ),
+                      ),
+                      Text(
+                        'Thời gian nộp hồ sơ chào giá:',
+                        style: TextStyle(
+                          color: AppColors.secondaryText,
+                          fontFamily: "Open Sans",
+                          fontWeight: FontWeight.w400,
+                          fontSize: 13.5,
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.only(bottom: 10)),
+                      Row(
+                        children: [
+                          Text(
+                            'Đã có ',
                             style: TextStyle(
-                              color: AppColors.primaryText,
                               fontFamily: "Open Sans",
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12,
-                              letterSpacing: -0.13193,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
                             ),
                           ),
-                        ),
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                        margin: EdgeInsets.only(left: 29, top: 7),
-                        child: Opacity(
-                          opacity: 0.4,
-                          child: Text(
-                            "Thời gian nộp hồ sơ chào giá: 30/04/2020",
-                            textAlign: TextAlign.left,
+                          Text(
+                            '3 nhà cung cấp ',
                             style: TextStyle(
-                              color: AppColors.primaryText,
+                              color: Colors.indigo,
                               fontFamily: "Open Sans",
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12,
-                              letterSpacing: -0.13193,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
                             ),
                           ),
-                        ),
+                          Text(
+                            'vào chào giá',
+                            style: TextStyle(
+                              fontFamily: "Open Sans",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                        width: 189,
-                        height: 14,
-                        margin: EdgeInsets.only(left: 29, top: 11),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "Đã có ",
-                                textAlign: TextAlign.left,
+                      Row(
+                        children: [
+                          FlatButton(
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (_) =>
+                                      new AlertDialog(
+                                          content: Container(
+                                            height: 500,
+                                            width: 400,
+                                            child: Column(
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Text('Thông tin đơn hàng',
+                                                        style: TextStyle(
+                                                            fontSize: 17,
+                                                            fontWeight:
+                                                            FontWeight.w500,
+                                                            color: Colors.indigo,
+                                                            fontFamily:
+                                                            "Open Sans",
+                                                            letterSpacing:
+                                                            -0.26385)),
+                                                    Padding(
+                                                        padding: EdgeInsets.only(
+                                                            left: 70)),
+                                                    IconButton(
+                                                        icon: Icon(Icons.clear,
+                                                            color:
+                                                            Colors.grey[600]),
+                                                        iconSize: 20,
+                                                        onPressed: () {
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        })
+                                                  ],
+                                                ),
+                                                Divider(thickness: 1),
+                                                Padding(padding: EdgeInsets.only(bottom: 5)),
+                                                Expanded(
+                                                  child: ListView.builder(
+                                                    padding: const EdgeInsets.all(1),
+                                                    itemCount: prepareData.length,
+                                                    itemBuilder: (context, index) {
+                                                      return Container(
+                                                        height: 180,
+                                                        width: 400,
+                                                        child: Card(
+                                                          elevation: 3,
+                                                          child: Container(
+                                                            padding: EdgeInsets.all(10),
+                                                              child: Text('Danh sách')),
+                                                        ),
+                                                      );
+                                                    }
+                                                  ),
+                                                ),
+                                                Align(
+                                                  alignment: Alignment.bottomRight,
+                                                  child: RaisedButton(
+                                                    color: Colors.indigo,
+                                                      onPressed: (){},
+                                                      child: Text(
+                                                        'Chọn nhà cung cấp',
+                                                        style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 13
+                                                        ),
+                                                      )),
+                                                )
+                                              ],
+                                            ),
+                                      )));
+                            },
+                            child: Text('Xem chi tiết',
                                 style: TextStyle(
-                                  color: AppColors.primaryText,
+                                  decoration: TextDecoration.underline,
+                                  color: Colors.indigo,
                                   fontFamily: "Open Sans",
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  letterSpacing: -0.13193,
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                "3 nhà",
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 38, 64, 139),
-                                  fontFamily: "Open Sans",
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 12,
-                                  letterSpacing: -0.13193,
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.topLeft,
-                              child: Container(
-                                margin: EdgeInsets.only(left: 4),
-                                child: Text(
-                                  "cung cấp vào chào giá",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    color: AppColors.primaryText,
-                                    fontFamily: "Open Sans",
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12,
-                                    letterSpacing: -0.13193,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                )),
+                          ),
+                        ],
                       ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        margin: EdgeInsets.only(left: 23, top: 23, right: 21, bottom: 9),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Container(
-                              width: 36,
-                              margin: EdgeInsets.only(top: 2, bottom: 9),
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Positioned(
-                                    left: 0,
-                                    bottom: 0,
-                                    child: Container(
-                                      width: 36,
-                                      height: 36,
-                                      decoration: BoxDecoration(
-                                        color: Color.fromARGB(255, 14, 62, 134),
-                                        borderRadius: BorderRadius.all(Radius.circular(17.9915)),
-                                      ),
-                                      child: Container(),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 2,
-                                    bottom: 2,
-                                    child: Image.asset(
-                                      "assets/images/path-22.png",
-                                      fit: BoxFit.none,
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 22,
-                                    top: 0,
-                                    child: Container(
-                                      width: 11,
-                                      height: 11,
-                                      decoration: BoxDecoration(
-                                        color: AppColors.secondaryElement,
-                                        borderRadius: BorderRadius.all(Radius.circular(5.31568)),
-                                      ),
-                                      child: Container(),
-                                    ),
-                                  ),
-                                  Positioned(
-                                    left: 22,
-                                    top: 0,
-                                    child: Image.asset(
-                                      "assets/images/shape-32.png",
-                                      fit: BoxFit.none,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Container(
-                                width: 34,
-                                height: 33,
-                                margin: EdgeInsets.only(left: 4, bottom: 10),
-                                child: Image.asset(
-                                  "assets/images/path-10.png",
-                                  fit: BoxFit.none,
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Container(
-                                width: 34,
-                                height: 33,
-                                margin: EdgeInsets.only(left: 5, bottom: 10),
-                                child: Image.asset(
-                                  "assets/images/path-40.png",
-                                  fit: BoxFit.none,
-                                ),
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Container(
-                                width: 33,
-                                height: 33,
-                                margin: EdgeInsets.only(left: 5, bottom: 10),
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Positioned(
-                                      left: 0,
-                                      bottom: 0,
-                                      child: Image.asset(
-                                        "assets/images/path-34.png",
-                                        fit: BoxFit.none,
-                                      ),
-                                    ),
-                                    Positioned(
-                                      left: 8,
-                                      bottom: 15,
-                                      child: Row(
-                                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                                        children: [
-                                          Align(
-                                            alignment: Alignment.bottomLeft,
-                                            child: Container(
-                                              width: 3,
-                                              height: 3,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.secondaryElement,
-                                                borderRadius: BorderRadius.all(Radius.circular(1.63559)),
-                                              ),
-                                              child: Container(),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: Alignment.bottomLeft,
-                                            child: Container(
-                                              width: 3,
-                                              height: 3,
-                                              margin: EdgeInsets.only(left: 3),
-                                              decoration: BoxDecoration(
-                                                color: AppColors.secondaryElement,
-                                                borderRadius: BorderRadius.all(Radius.circular(1.63559)),
-                                              ),
-                                              child: Container(),
-                                            ),
-                                          ),
-                                          Align(
-                                            alignment: Alignment.bottomLeft,
-                                            child: Container(
-                                              width: 3,
-                                              height: 3,
-                                              margin: EdgeInsets.only(left: 3),
-                                              decoration: BoxDecoration(
-                                                color: AppColors.secondaryElement,
-                                                borderRadius: BorderRadius.all(Radius.circular(1.63559)),
-                                              ),
-                                              child: Container(),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Spacer(),
-                            Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Container(
-                                width: 131,
-                                height: 48,
-                                child: Stack(
-                                  alignment: Alignment.center,
-                                  children: [
-                                    Positioned(
-                                      right: 0,
-                                      bottom: 0,
-                                      child: Container(
-                                        width: 131,
-                                        height: 48,
-                                        decoration: BoxDecoration(
-                                          color: AppColors.secondaryElement,
-                                          borderRadius: BorderRadius.all(Radius.circular(24)),
-                                        ),
-                                        child: Container(),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      right: 21,
-                                      bottom: 16,
-                                      child: Text(
-                                        "Xem chi tiết",
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                          color: Color.fromARGB(255, 38, 64, 139),
-                                          fontFamily: "Open Sans",
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 15,
-                                          letterSpacing: -0.16491,
-                                        ),
-                                      ),
-                                    ),
-                                    Positioned(
-                                      right: 1,
-                                      bottom: 1,
-                                      child: Container(
-                                        width: 130,
-                                        height: 47,
-                                        decoration: BoxDecoration(
-                                          border: Border.fromBorderSide(Borders.secondaryBorder),
-                                          borderRadius: BorderRadius.all(Radius.circular(23.5)),
-                                        ),
-                                        child: Container(),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
   }
 }
+
+// Expanded(
+// flex: 1,
+// child: Container(
+// margin: EdgeInsets.only(left: 23, top: 23, right: 21, bottom: 9),
+// child: Row(
+// crossAxisAlignment: CrossAxisAlignment.stretch,
+// children: [
+// Container(
+// width: 36,
+// margin: EdgeInsets.only(top: 2, bottom: 9),
+// child: Stack(
+// alignment: Alignment.center,
+// children: [
+// Positioned(
+// left: 0,
+// top: 0,
+// child: Container(
+// width: 36,
+// height: 36,
+// decoration: BoxDecoration(
+// color: Color.fromARGB(255, 14, 62, 134),
+// borderRadius: BorderRadius.all(Radius.circular(17.9915)),
+// ),
+// child: Container(),
+// ),
+// ),
+// Positioned(
+// left: 22,
+// top: 0,
+// child: Container(
+// width: 11,
+// height: 11,
+// decoration: BoxDecoration(
+// color: AppColors.secondaryElement,
+// borderRadius: BorderRadius.all(Radius.circular(18)),
+// ),
+// child: Container(),

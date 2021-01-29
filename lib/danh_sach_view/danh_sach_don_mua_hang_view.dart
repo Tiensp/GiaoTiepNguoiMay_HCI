@@ -41,9 +41,6 @@ class _DanhSachDonMuaHangViewState extends State<DanhSachDonMuaHangView> {
     var scrSize = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: GradientAppBar('Danh sách'),
-      //drawer: MyDrawer(),
-      bottomNavigationBar: AppDocker(),
       body: Container(
         color: Colors.white,
         child: Column(children: [

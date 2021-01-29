@@ -27,12 +27,6 @@ class _AppDockerState extends State<AppDocker> {
           currentIndex: _currentIndex,
           onTap: (value) {
             _currentIndex = value;
-            switch (_currentIndex) {
-              case 0: return Navigator.of(context).pushNamed("dsyeucau");
-              case 1: return Navigator.of(context).pushNamed("dsdonmuahang");
-              case 2: return Navigator.of(context).pushNamed("lich");
-              case 3: return Navigator.of(context).pushNamed("chaogia");
-            }
           },
           items: [
             BottomNavigationBarItem(

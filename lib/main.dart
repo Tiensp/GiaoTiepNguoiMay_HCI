@@ -7,7 +7,7 @@
     */
 
 import 'package:flutter/material.dart';
-import 'package:gtnm_hci/danh_sach_view/danh_sach_yeu_cau_view.dart';
+import 'package:gtnm_hci/Home.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:gtnm_hci/Router.dart';
 
@@ -22,9 +22,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MaterialApp(
-
-      initialRoute: "dsyeucau",
-      onGenerateRoute: router.generateRoute,
+      home: Home(),
+      // initialRoute: "dsyeucau",
+      // onGenerateRoute: router.generateRoute,
     );
   }
 }
