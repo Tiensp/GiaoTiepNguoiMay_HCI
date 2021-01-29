@@ -15,7 +15,7 @@ import 'package:gtnm_hci/MyWidget/SearchBar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gtnm_hci/MyWidget/my_Drawer.dart';
 import 'package:gtnm_hci/MyWidget/my_AppBar.dart';
-import 'package:gtnm_hci/MyWidget/App_BottomNavigationBar.dart';
+import 'package:gtnm_hci/MyWidget/my_BottomNavigationBar.dart';
 
 class DanhSachYeuCauView extends StatefulWidget {
   @override
@@ -37,8 +37,8 @@ class _DanhSachYeuCauViewState extends State<DanhSachYeuCauView> {
     var scrSize = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: MyAppBar('Danh sách', Colors.white),
-      drawer: MyDrawer(),
+      appBar: GradientAppBar('Danh sách'),
+      //drawer: MyDrawer(),
       bottomNavigationBar: AppDocker(),
       body: Container(
         color: Colors.white,

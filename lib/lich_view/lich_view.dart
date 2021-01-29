@@ -16,7 +16,7 @@ import 'package:gtnm_hci/MyWidget/my_Drawer.dart';
 import 'package:gtnm_hci/MyWidget/my_AppBar.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:gtnm_hci/MyWidget/App_BottomNavigationBar.dart';
+import 'package:gtnm_hci/MyWidget/my_BottomNavigationBar.dart';
 
 extension StringExtension on String {
   String capitalize() {
@@ -43,7 +43,7 @@ class _LichViewState extends State<LichView> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: MyAppBar('Lịch', Color.fromARGB(255, 248, 249, 250)),
-      drawer: MyDrawer(),
+      //drawer: MyDrawer(),
       bottomNavigationBar: AppDocker(),
       body: Container(
         width: double.infinity,

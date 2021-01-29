@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gtnm_hci/danh_sach_view/danh_sach_yeu_cau_view.dart';
-import 'package:gtnm_hci/tao_moi_yeu_cau_khach_hang_view/tao_moi_yeu_cau_khach_hang_view.dart ';
-import 'package:gtnm_hci/lich_view/lich_view.dart';
-import 'package:gtnm_hci/values/values.dart';
-import 'package:gtnm_hci/MyWidget/request_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -30,6 +25,42 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       elevation: 0,
+    );
+  }
+}
+
+class GradientAppBar extends StatelessWidget implements PreferredSizeWidget {
+
+  final String title;
+  final double barHeight = 50.0;
+
+  GradientAppBar(this.title);
+  @override
+  Size get preferredSize => new Size.fromHeight(kToolbarHeight);
+  @override
+  Widget build(BuildContext context) {
+    final double statusbarHeight = MediaQuery
+        .of(context)
+        .padding
+        .top;
+
+    return new Container(
+      padding: new EdgeInsets.only(top: statusbarHeight),
+      child: new Center(
+        child: new Text(
+          title,
+          style: new TextStyle(fontSize: 25.0, color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
+      decoration: new BoxDecoration(
+        gradient: new LinearGradient(
+            colors: [Color.fromARGB(255,42,127,206), Color.fromARGB(255,16,216,216)],
+            begin: const FractionalOffset(0.0, 0.0),
+            end: const FractionalOffset(1.0, 0.0),
+            stops: [0.0, 1.0],
+            tileMode: TileMode.clamp
+        ),
+      ),
     );
   }
 }
