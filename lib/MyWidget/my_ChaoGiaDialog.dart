@@ -51,6 +51,19 @@ class _MyDialogState extends State<MyDialog> {
             Phone: '0123456789',
             requestDate: '22/12/2020',
             recieveDate: '25/12/2020',
+            detail: '- 1 tấn')),
+    RequestModel(
+        ID: '#8566',
+        companyName: 'Công ty TMDV QN',
+        approval: false,
+        bodyModel: RequestBodyModel(
+            title_work: 'Đặt lô mới',
+            productName: 'Vải lụa đẹp',
+            rePresentative: 'Quang Nhân',
+            Email: 'abc@gmail.com',
+            Phone: '0123456789',
+            requestDate: '22/12/2020',
+            recieveDate: '25/12/2020',
             detail: '- 1 tấn'))
   ];
 

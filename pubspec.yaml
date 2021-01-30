@@ -43,7 +43,7 @@ dependencies:
   pie_chart: ^3.1.1
   chips_choice: ^1.2.0
   flutter_local_notifications: ^1.4.4+1
-  shared_preferences: ^0.5.8
+  shared_preferences: ^0.5.12+4
   flutter_localizations:
     sdk: flutter
   table_calendar: ^2.3.3

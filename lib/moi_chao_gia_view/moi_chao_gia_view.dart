@@ -18,6 +18,7 @@ class MoiChaoGiaWidget extends StatefulWidget {
 
 class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
   int selectedSupplier = 0;
+  bool showMoreAvatar = false;
 
   final List<RequestModel> prepareData = [
     RequestModel(
@@ -212,57 +213,43 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                             width: 165,
                             height: 36,
                             child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: prepareData.length,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: prepareData.length,
                                 itemBuilder: (context, index) {
-                                return index > 2 ? CircleAvatar(backgroundColor: Colors.indigo, child: Icon(Icons.more_horiz, color: Colors.white)): Container(
-                                  width: 40,
-                                  child: Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                    Positioned(
-                                      left: 0,
-                                      top: 0,
-                                      child: Container(
-                                        width: 36,
-                                        height: 36,
-                                        decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius: BorderRadius.all(Radius.circular(17.9915))),
-                                        child: Container(),
-                                      ),
-                                      ),
-                                    selectedSupplier == index
-                                      ? //if isSelected: check
-                                    Positioned(
-                                      left: 22,
-                                      top: 0,
-                                      child: Container(
-                                        width: 11,
-                                        height: 11,
-                                        decoration: BoxDecoration(
-                                        color: Colors.indigo,
-                                        borderRadius: BorderRadius.all(Radius.circular(18)),
-                                        ),
-                                        child: Container(child: Icon(Icons.check, color: Colors.white, size: 10))
-                                      ))
-                                        : //else: nothing
-                                        Container(),
-                                    ]
-                                  ),
-                                );
-                                }
-                            ),
+                                  if (index > 2) {
+                                    if (showMoreAvatar == false) {
+                                      return InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            showMoreAvatar = true;
+                                          });
+                                          return avatarWithCheckIcon(index);
+                                        },
+                                        child: CircleAvatar(
+                                            backgroundColor: Colors.indigo,
+                                            child: Icon(Icons.more_horiz,
+                                                color: Colors.white)),
+                                      );
+                                    } else {
+                                      return avatarWithCheckIcon(index);
+                                    }
+                                  } else {
+                                    return avatarWithCheckIcon(index);
+                                  }
+                                }),
                           ),
                           Padding(padding: EdgeInsets.only(right: 20)),
                           FlatButton(
                             onPressed: () {
                               showDialog(
-                                  context: context,
-                                  builder: (_) => MyDialog(selected: selectedSupplier)).then((value) {
-                                    setState(() {
-                                      selectedSupplier = value;
-                                    });
+                                      context: context,
+                                      builder: (_) =>
+                                          MyDialog(selected: selectedSupplier))
+                                  .then((value) {
+                                setState(() {
+                                  selectedSupplier = value;
+                                  showMoreAvatar = false;
+                                });
                               });
                             },
                             child: Text('Xem chi tiết',
@@ -286,9 +273,44 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
       ),
     );
   }
+
+  Container avatarWithCheckIcon(int index) {
+    return Container(
+      width: 40,
+      child: Stack(alignment: Alignment.center, children: [
+        Positioned(
+          left: 0,
+          top: 0,
+          child: Container(
+            width: 36,
+            height: 36,
+            decoration: BoxDecoration(
+                color: Colors.grey,
+                borderRadius: BorderRadius.all(Radius.circular(17.9915))),
+            child: Container(),
+          ),
+        ),
+        selectedSupplier == index
+            ? //if isSelected: check
+            Positioned(
+                left: 22,
+                top: 0,
+                child: Container(
+                    width: 11,
+                    height: 11,
+                    decoration: BoxDecoration(
+                      color: Colors.indigo,
+                      borderRadius: BorderRadius.all(Radius.circular(18)),
+                    ),
+                    child: Container(
+                        child:
+                            Icon(Icons.check, color: Colors.white, size: 10))))
+            : //else: nothing
+            Container(),
+      ]),
+    );
+  }
 }
-
-
 
 // Expanded(
 // flex: 1,
