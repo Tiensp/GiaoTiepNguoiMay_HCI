@@ -17,9 +17,18 @@ class MoiChaoGiaWidget extends StatefulWidget {
 }
 
 class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
-  int selectedSupplier = 0;
+  List<int> selectedSupplier;
   bool showMoreAvatar = false;
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedSupplier = [];
+    for (int i = 0; i < prepareDataUser.length; i++) {
+      selectedSupplier.add(0);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,16 +174,16 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                             child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
                                 itemCount: prepareDataUser.length,
-                                itemBuilder: (context, index) {
-                                  if (index > 2) {
+                                itemBuilder: (context, ind) {
+                                  if (ind > 2) {
                                     if (showMoreAvatar == false) {
-                                      if (index == 3) {
+                                      if (ind == 3) {
                                         return InkWell(
                                           onTap: () {
                                             setState(() {
                                               showMoreAvatar = true;
                                             });
-                                            return avatarWithCheckIcon(index);
+                                            return avatarWithCheckIcon(index, ind);
                                           },
                                           child: CircleAvatar(
                                               backgroundColor: Colors.indigo,
@@ -186,10 +195,10 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                                         return Container();
                                       }
                                     } else {
-                                      return avatarWithCheckIcon(index);
+                                      return avatarWithCheckIcon(index, ind);
                                     }
                                   } else {
-                                    return avatarWithCheckIcon(index);
+                                    return avatarWithCheckIcon(index, ind);
                                   }
                                 }),
                           ),
@@ -199,11 +208,11 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                               showDialog(
                                       context: context,
                                       builder: (_) =>
-                                          MyChaoGiaDialog(selected: selectedSupplier,
+                                          MyChaoGiaDialog(selected: selectedSupplier[index],
                                               listData: prepareDataUser))
                                   .then((value) {
                                 setState(() {
-                                  selectedSupplier = value;
+                                  selectedSupplier[index] = value;
                                   showMoreAvatar = false;
                                 });
                               });
@@ -230,7 +239,7 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
     );
   }
 
-  Container avatarWithCheckIcon(int index) {
+  Container avatarWithCheckIcon(int cardInd, int ind) {
     return Container(
       width: 40,
       child: Stack(alignment: Alignment.center, children: [
@@ -245,10 +254,10 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                 borderRadius: BorderRadius.all(Radius.circular(17.9915))),
             child: CircleAvatar(
               foregroundColor: Colors.white,
-                child: Image.asset(prepareDataUser[index].linkAvatar))
+                child: Image.asset(prepareDataUser[ind].linkAvatar))
           ),
         ),
-        selectedSupplier == index
+        selectedSupplier[cardInd] == ind
             ? //if isSelected: check
             Positioned(
                 left: 22,
