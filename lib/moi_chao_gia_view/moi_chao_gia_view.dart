@@ -9,8 +9,16 @@
 import 'package:flutter/material.dart';
 import 'package:gtnm_hci/values/values.dart';
 import 'package:gtnm_hci/MyWidget/request_model.dart';
+import 'package:gtnm_hci/MyWidget/my_ChaoGiaDialog.dart';
 
-class MoiChaoGiaWidget extends StatelessWidget {
+class MoiChaoGiaWidget extends StatefulWidget {
+  @override
+  _MoiChaoGiaWidgetState createState() => _MoiChaoGiaWidgetState();
+}
+
+class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
+  int groupVal = 0;
+
   final List<RequestModel> prepareData = [
     RequestModel(
         ID: '#8566',
@@ -39,6 +47,7 @@ class MoiChaoGiaWidget extends StatelessWidget {
             recieveDate: '25/12/2020',
             detail: '- 1 tấn'))
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,75 +163,7 @@ class MoiChaoGiaWidget extends StatelessWidget {
                             onPressed: () {
                               showDialog(
                                   context: context,
-                                  builder: (_) =>
-                                      new AlertDialog(
-                                          content: Container(
-                                            height: 500,
-                                            width: 400,
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Text('Thông tin đơn hàng',
-                                                        style: TextStyle(
-                                                            fontSize: 17,
-                                                            fontWeight:
-                                                            FontWeight.w500,
-                                                            color: Colors.indigo,
-                                                            fontFamily:
-                                                            "Open Sans",
-                                                            letterSpacing:
-                                                            -0.26385)),
-                                                    Padding(
-                                                        padding: EdgeInsets.only(
-                                                            left: 70)),
-                                                    IconButton(
-                                                        icon: Icon(Icons.clear,
-                                                            color:
-                                                            Colors.grey[600]),
-                                                        iconSize: 20,
-                                                        onPressed: () {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                        })
-                                                  ],
-                                                ),
-                                                Divider(thickness: 1),
-                                                Padding(padding: EdgeInsets.only(bottom: 5)),
-                                                Expanded(
-                                                  child: ListView.builder(
-                                                    padding: const EdgeInsets.all(1),
-                                                    itemCount: prepareData.length,
-                                                    itemBuilder: (context, index) {
-                                                      return Container(
-                                                        height: 180,
-                                                        width: 400,
-                                                        child: Card(
-                                                          elevation: 3,
-                                                          child: Container(
-                                                            padding: EdgeInsets.all(10),
-                                                              child: Text('Danh sách')),
-                                                        ),
-                                                      );
-                                                    }
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment: Alignment.bottomRight,
-                                                  child: RaisedButton(
-                                                    color: Colors.indigo,
-                                                      onPressed: (){},
-                                                      child: Text(
-                                                        'Chọn nhà cung cấp',
-                                                        style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 13
-                                                        ),
-                                                      )),
-                                                )
-                                              ],
-                                            ),
-                                      )));
+                                  builder: (_) => MyDialog());
                             },
                             child: Text('Xem chi tiết',
                                 style: TextStyle(
@@ -246,6 +187,8 @@ class MoiChaoGiaWidget extends StatelessWidget {
     );
   }
 }
+
+
 
 // Expanded(
 // flex: 1,
