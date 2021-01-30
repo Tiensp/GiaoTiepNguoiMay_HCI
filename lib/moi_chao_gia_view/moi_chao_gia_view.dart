@@ -17,7 +17,7 @@ class MoiChaoGiaWidget extends StatefulWidget {
 }
 
 class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
-  int groupVal = 0;
+  int selectedSupplier = 0;
 
   final List<RequestModel> prepareData = [
     RequestModel(
@@ -118,14 +118,27 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                           fontSize: 13.5,
                         ),
                       ),
-                      Text(
-                        'Thời gian nộp hồ sơ chào giá:',
-                        style: TextStyle(
-                          color: AppColors.secondaryText,
-                          fontFamily: "Open Sans",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13.5,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            'Thời gian nộp hồ sơ chào giá: ',
+                            style: TextStyle(
+                              color: AppColors.secondaryText,
+                              fontFamily: "Open Sans",
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13.5,
+                            ),
+                          ),
+                          Text(
+                            prepareData[index].bodyModel.requestDate,
+                            style: TextStyle(
+                              color: AppColors.secondaryText,
+                              fontFamily: "Open Sans",
+                              fontWeight: FontWeight.w400,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ],
                       ),
                       Padding(padding: EdgeInsets.only(bottom: 10)),
                       Row(
@@ -139,7 +152,16 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                             ),
                           ),
                           Text(
-                            '3 nhà cung cấp ',
+                            prepareData.length.toString(),
+                            style: TextStyle(
+                              color: Colors.indigo,
+                              fontFamily: "Open Sans",
+                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                            ),
+                          ),
+                          Text(
+                            ' nhà cung cấp ',
                             style: TextStyle(
                               color: Colors.indigo,
                               fontFamily: "Open Sans",
@@ -159,11 +181,59 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                       ),
                       Row(
                         children: [
+                          Container(
+                            color: Colors.white,
+                            width: 165,
+                            height: 36,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: prepareData.length,
+                                itemBuilder: (context, index) {
+                                return Container(
+                                  width: 40,
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                    Positioned(
+                                      left: 0,
+                                      top: 0,
+                                      child: Container(
+                                        width: 36,
+                                        height: 36,
+                                        decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius: BorderRadius.all(Radius.circular(17.9915))),
+                                        child: Container(),
+                                      ),
+                                      ),
+                                    selectedSupplier == index
+                                      ? //if isSelected: check
+                                    Positioned(
+                                      left: 22,
+                                      top: 0,
+                                      child: Container(
+                                        width: 11,
+                                        height: 11,
+                                        decoration: BoxDecoration(
+                                        color: Colors.indigo,
+                                        borderRadius: BorderRadius.all(Radius.circular(18)),
+                                        ),
+                                        child: Container(child: Icon(Icons.check, color: Colors.white, size: 10))
+                                      ))
+                                        : //else: nothing
+                                        Container(),
+                                    ]
+                                  ),
+                                );
+                                }
+                            ),
+                          ),
+                          Padding(padding: EdgeInsets.only(right: 20)),
                           FlatButton(
                             onPressed: () {
                               showDialog(
                                   context: context,
-                                  builder: (_) => MyDialog());
+                                  builder: (_) => MyDialog()).then((value) => null);
                             },
                             child: Text('Xem chi tiết',
                                 style: TextStyle(
