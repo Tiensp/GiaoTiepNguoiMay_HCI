@@ -275,32 +275,32 @@ class _LichViewState extends State<LichView> with TickerProviderStateMixin{
                             contentPadding: EdgeInsets.only(left: 0),
                             leading: CircleAvatar(
                               backgroundColor:
-                                  prepareData[index].bodyModel.processStatus ==
+                                  _selectedEvents[index].bodyModel.processStatus ==
                                           0
                                       ? Colors.red[400]
-                                      : prepareData[index]
+                                      : _selectedEvents[index]
                                                   .bodyModel
                                                   .processStatus ==
                                               1
                                           ? Colors.orangeAccent
-                                          : prepareData[index]
+                                          : _selectedEvents[index]
                                                       .bodyModel
                                                       .processStatus ==
                                                   2
                                               ? Colors.green
                                               : Colors.indigo,
                               child:
-                                  prepareData[index].bodyModel.processStatus ==
+                                  _selectedEvents[index].bodyModel.processStatus ==
                                           0
                                       ? Icon(Icons.receipt_long,
                                           color: Colors.white)
-                                      : prepareData[index]
+                                      : _selectedEvents[index]
                                                   .bodyModel
                                                   .processStatus ==
                                               1
                                           ? Icon(Icons.work_outline_rounded,
                                               color: Colors.white)
-                                          : prepareData[index]
+                                          : _selectedEvents[index]
                                                       .bodyModel
                                                       .processStatus ==
                                                   2
@@ -310,14 +310,14 @@ class _LichViewState extends State<LichView> with TickerProviderStateMixin{
                                                   color: Colors.white),
                             ),
                             title: Text(
-                              prepareData[index].bodyModel.processStatus == 0
+                              _selectedEvents[index].bodyModel.processStatus == 0
                                   ? 'Đặt hàng'
-                                  : prepareData[index]
+                                  : _selectedEvents[index]
                                               .bodyModel
                                               .processStatus ==
                                           1
                                       ? 'Nhận hàng'
-                                      : prepareData[index]
+                                      : _selectedEvents[index]
                                                   .bodyModel
                                                   .processStatus ==
                                               2
