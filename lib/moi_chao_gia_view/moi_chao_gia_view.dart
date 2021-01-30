@@ -18,16 +18,21 @@ class MoiChaoGiaWidget extends StatefulWidget {
 
 class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
   List<int> selectedSupplier;
-  bool showMoreAvatar = false;
+  List<bool> showMoreAvatar;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     selectedSupplier = [];
+    showMoreAvatar = [];
     for (int i = 0; i < prepareDataUser.length; i++) {
       selectedSupplier.add(0);
     }
+    for (int i = 0; i < prepareData.length; i++) {
+      showMoreAvatar.add(false);
+    }
+
   }
   @override
   Widget build(BuildContext context) {
@@ -176,12 +181,12 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                                 itemCount: prepareDataUser.length,
                                 itemBuilder: (context, ind) {
                                   if (ind > 2) {
-                                    if (showMoreAvatar == false) {
+                                    if (showMoreAvatar[index] == false) {
                                       if (ind == 3) {
                                         return InkWell(
                                           onTap: () {
                                             setState(() {
-                                              showMoreAvatar = true;
+                                              showMoreAvatar[index] = true;
                                             });
                                             return avatarWithCheckIcon(index, ind);
                                           },
@@ -213,7 +218,7 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                                   .then((value) {
                                 setState(() {
                                   selectedSupplier[index] = value;
-                                  showMoreAvatar = false;
+                                  showMoreAvatar[index] = false;
                                 });
                               });
                             },
