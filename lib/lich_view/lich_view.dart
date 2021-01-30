@@ -6,14 +6,17 @@
 *  Copyright © 2018 [Company]. All rights reserved.
     */
 
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gtnm_hci/values/values.dart';
 import 'package:gtnm_hci/MyWidget/request_model.dart';
 import 'package:gtnm_hci/MyWidget/purchase_order_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:table_calendar/table_calendar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:table_calendar/table_calendar.dart';
+import 'package:intl/date_symbol_data_local.dart';
+
 
 extension StringExtension on String {
   String capitalize() {
@@ -22,17 +25,86 @@ extension StringExtension on String {
 }
 
 class LichView extends StatefulWidget {
+  LichView({Key key}) : super(key: key);
+
   @override
   _LichViewState createState() => _LichViewState();
 }
 
-class _LichViewState extends State<LichView> {
+class _LichViewState extends State<LichView> with TickerProviderStateMixin{
   CalendarController _calendarController;
+  Map<DateTime, List> _events;
+  List _selectedEvents;
+  AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
     _calendarController = CalendarController();
+    final _selectedDay = DateTime.now();
+    _events = {
+      _selectedDay.subtract(Duration(days: 31)): [
+        prepareData[0],
+        prepareData[1],
+        prepareData[2],
+        prepareData[3]
+      ],
+      _selectedDay.subtract(Duration(days: 30)): [
+        prepareData[0],
+        prepareData[1],
+        prepareData[2],
+        prepareData[3]
+      ],
+      _selectedDay.subtract(Duration(days: 27)): [
+        prepareData[0],
+        prepareData[1],
+        prepareData[2],
+        prepareData[3]
+      ],
+      _selectedDay.subtract(Duration(days: 20)): [
+        prepareData[0],
+        prepareData[2],
+      ],
+      _selectedDay.subtract(Duration(days: 16)): [
+        prepareData[3]],
+      _selectedDay.subtract(Duration(days: 10)): [
+        prepareData[1],
+        prepareData[2],
+      ],
+      _selectedDay.subtract(Duration(days: 4)): [
+        prepareData[2],
+        prepareData[3]
+      ],
+      _selectedDay.add(Duration(days: 1)): [
+        prepareData[0],
+      ],
+      _selectedDay.add(Duration(days: 7)): [
+        prepareData[0],
+        prepareData[3]
+      ],
+      _selectedDay.add(Duration(days: 11)): [
+        prepareData[0],
+        prepareData[1],
+        prepareData[2],
+        prepareData[3]
+      ],
+    };
+
+    _selectedEvents = _events[_selectedDay] ?? [];
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 400),
+    );
+
+    _animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    _calendarController.dispose();
+    super.dispose();
   }
 
   @override
@@ -82,6 +154,13 @@ class _LichViewState extends State<LichView> {
                         heightFactor: 1.07,
                         child: TableCalendar(
                           locale: 'vi_VI',
+                          events: _events,
+                          onDaySelected: (date, events,_) {
+                            setState(() {
+                              _selectedEvents = events;
+                            });
+                          },
+                          availableGestures: AvailableGestures.all,
                           calendarController: _calendarController,
                           initialCalendarFormat: CalendarFormat.month,
                           startingDayOfWeek: StartingDayOfWeek.monday,
@@ -98,14 +177,51 @@ class _LichViewState extends State<LichView> {
                                 fontWeight: FontWeight.w600),
                           ),
                           builders: CalendarBuilders(
-                            selectedDayBuilder: (context, date, events) =>
-                                Container(
-                              child: Icon(
-                                Icons.event_note,
-                                color: Colors.green,
-                                size: 30,
-                              ),
-                            ),
+                            selectedDayBuilder: (context, date, events) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.indigo,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    '${date.day}',
+                                    style: TextStyle().copyWith(fontSize: 16.0, color: Colors.white),
+                                  ),
+                                ),
+                              );
+                            },
+                            todayDayBuilder: (context, date, _) {
+                              return Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.indigo,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    '${date.day}',
+                                    style: TextStyle().copyWith(fontSize: 16.0, color: Colors.white),
+                                  ),
+                                ),
+                              );
+                            },
+                            markersBuilder: (context, date, events, holidays) {
+                              final children = <Widget>[];
+
+                              if (events.isNotEmpty) {
+                                children.add(
+                                  Center(child: _buildEventsMarker(date, events)),
+                                );
+                              }
+
+                              if (holidays.isNotEmpty) {
+                                children.add(
+                                  Center(child: _buildHolidaysMarker()),
+                                );
+                              }
+
+                              return children;
+                            },
                           ),
                           calendarStyle: CalendarStyle(
                             weekdayStyle: TextStyle(
@@ -151,7 +267,7 @@ class _LichViewState extends State<LichView> {
                 widthFactor: 0.85,
                 heightFactor: 0.9,
                 child: ListView.builder(
-                    itemCount: prepareData.length,
+                    itemCount: _selectedEvents.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Column(
                         children: [
@@ -633,6 +749,28 @@ class _LichViewState extends State<LichView> {
     );
   }
 
+  Widget _buildEventsMarker(DateTime date, List events) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        shape: BoxShape.circle,
+      ),
+      width: 38,
+      height: 38,
+      child: Center(
+        child: Icon(Icons.event_available, color: Colors.green, size: 30)
+      ),
+    );
+  }
+
+  Widget _buildHolidaysMarker() {
+    return Icon(
+      Icons.celebration,
+      size: 20.0,
+      color: Colors.blueGrey[800],
+    );
+  }
+
   List<PurchaseOrderModel> prepareData = <PurchaseOrderModel>[
     PurchaseOrderModel(
         ID: '#8566',
@@ -648,7 +786,7 @@ class _LichViewState extends State<LichView> {
             Phone: '0123456789',
             requestDate: '22/12/2020',
             recieveDate: '25/12/2020',
-            processStatus: 1)),
+            processStatus: 0)),
     PurchaseOrderModel(
         ID: '#8566',
         productName: 'Vải dù',
@@ -663,7 +801,7 @@ class _LichViewState extends State<LichView> {
             Phone: '0123456789',
             requestDate: '22/12/2020',
             recieveDate: '25/12/2020',
-            processStatus: 2)),
+            processStatus: 1)),
     PurchaseOrderModel(
         ID: '#8566',
         productName: 'Da PU nhập khẩu',
@@ -678,7 +816,7 @@ class _LichViewState extends State<LichView> {
             Phone: '0123456789',
             requestDate: '22/12/2020',
             recieveDate: '25/12/2020',
-            processStatus: 0)),
+            processStatus: 2)),
     PurchaseOrderModel(
         ID: '#8566',
         productName: 'Vải gấm hoa',
