@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:gtnm_hci/MyWidget/request_model.dart';
 
 class MyDialog extends StatefulWidget {
+  final int selected;
+
+  const MyDialog ({ Key key, this.selected }): super(key: key);
   @override
   _MyDialogState createState() => new _MyDialogState();
 }
 
 class _MyDialogState extends State<MyDialog> {
-  int selectedIndex = 0;
+  int selectedIndex;
   final List<RequestModel> prepareData = [
     RequestModel(
         ID: '#8566',
@@ -50,6 +53,14 @@ class _MyDialogState extends State<MyDialog> {
             recieveDate: '25/12/2020',
             detail: '- 1 tấn'))
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    selectedIndex = widget.selected;
+  }
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -80,7 +91,7 @@ class _MyDialogState extends State<MyDialog> {
                     iconSize: 20,
                     onPressed: () {
                       Navigator.of(context)
-                          .pop();
+                          .pop(selectedIndex);
                     })
               ],
             ),

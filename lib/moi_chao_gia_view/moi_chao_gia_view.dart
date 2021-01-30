@@ -259,7 +259,7 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                             onPressed: () {
                               showDialog(
                                   context: context,
-                                  builder: (_) => MyDialog()).then((value) {
+                                  builder: (_) => MyDialog(selected: selectedSupplier)).then((value) {
                                     setState(() {
                                       selectedSupplier = value;
                                     });
