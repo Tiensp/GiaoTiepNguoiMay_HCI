@@ -9,13 +9,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:gtnm_hci/values/values.dart';
-import 'package:gtnm_hci/MyWidget/request_model.dart';
 import 'package:gtnm_hci/MyWidget/purchase_order_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:intl/date_symbol_data_local.dart';
+import 'package:gtnm_hci/MyWidget/my_LichDialog.dart';
 
 
 extension StringExtension on String {
@@ -33,6 +31,7 @@ class LichView extends StatefulWidget {
 
 class _LichViewState extends State<LichView> with TickerProviderStateMixin{
   CalendarController _calendarController;
+  DateTime _selectedDay;
   Map<DateTime, List> _events;
   List _selectedEvents;
   AnimationController _animationController;
@@ -41,48 +40,49 @@ class _LichViewState extends State<LichView> with TickerProviderStateMixin{
   void initState() {
     super.initState();
     _calendarController = CalendarController();
-    final _selectedDay = DateTime.now();
+    final _today = DateTime.now();
+    _selectedDay = DateTime(_today.year, _today.month,_today.day);
     _events = {
-      _selectedDay.subtract(Duration(days: 31)): [
+      DateTime(2021, 1, 30): [
         prepareData[0],
         prepareData[1],
         prepareData[2],
         prepareData[3]
       ],
-      _selectedDay.subtract(Duration(days: 30)): [
+      DateTime(2021, 1, 25): [
         prepareData[0],
         prepareData[1],
         prepareData[2],
         prepareData[3]
       ],
-      _selectedDay.subtract(Duration(days: 27)): [
+      DateTime(2021, 1, 16): [
         prepareData[0],
         prepareData[1],
         prepareData[2],
         prepareData[3]
       ],
-      _selectedDay.subtract(Duration(days: 20)): [
+      DateTime(2021, 1, 11): [
         prepareData[0],
         prepareData[2],
       ],
-      _selectedDay.subtract(Duration(days: 16)): [
+      DateTime(2021, 1, 10): [
         prepareData[3]],
       _selectedDay.subtract(Duration(days: 10)): [
         prepareData[1],
         prepareData[2],
       ],
-      _selectedDay.subtract(Duration(days: 4)): [
+      DateTime(2021, 1, 5): [
         prepareData[2],
         prepareData[3]
       ],
-      _selectedDay.add(Duration(days: 1)): [
+      DateTime(2021, 2, 10): [
         prepareData[0],
       ],
-      _selectedDay.add(Duration(days: 7)): [
+      DateTime(2021, 1, 2): [
         prepareData[0],
         prepareData[3]
       ],
-      _selectedDay.add(Duration(days: 11)): [
+      DateTime(2020, 12, 28): [
         prepareData[0],
         prepareData[1],
         prepareData[2],
@@ -157,6 +157,7 @@ class _LichViewState extends State<LichView> with TickerProviderStateMixin{
                           events: _events,
                           onDaySelected: (date, events,_) {
                             setState(() {
+                              _selectedDay = date;
                               _selectedEvents = events;
                             });
                           },
@@ -329,404 +330,18 @@ class _LichViewState extends State<LichView> with TickerProviderStateMixin{
                                 letterSpacing: -0.26385,
                               ),
                             ),
-                            subtitle: Text('13:00 - 19 Aug 2021'),
+                            subtitle: Row(
+                              children: [
+                                Text('13:00 - '),
+                                Text(DateFormat('dd-MM-yyyy').format(_selectedDay))
+                              ],
+                            ),
                             onTap: () {
                               /* ================SHOW DIALOG===================*/
                               showDialog(
                                   context: context,
-                                  builder: (_) => new AlertDialog(
-                                        content: Container(
-                                          height: 400,
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Text('Thông tin đơn hàng',
-                                                      style: TextStyle(
-                                                          fontSize: 17,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          color: Colors.indigo,
-                                                          fontFamily:
-                                                              "Open Sans",
-                                                          letterSpacing:
-                                                              -0.26385)),
-                                                  Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 70)),
-                                                  IconButton(
-                                                      icon: Icon(Icons.clear,
-                                                          color:
-                                                              Colors.grey[600]),
-                                                      iconSize: 20,
-                                                      onPressed: () {
-                                                        Navigator.of(context)
-                                                            .pop();
-                                                      })
-                                                ],
-                                              ),
-                                              Container(
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: <Widget>[
-                                                    Container(
-                                                      width: 350,
-                                                      padding:
-                                                          EdgeInsets.all(15),
-                                                      decoration: BoxDecoration(
-                                                          border: Border.all(
-                                                              color: Colors
-                                                                  .blue[100]),
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      8.0)),
-                                                      child: Column(
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .stretch,
-                                                          children: <Widget>[
-                                                            Row(
-                                                              children: [
-                                                                Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                      'Tên sản phẩm',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: AppColors
-                                                                            .secondaryText,
-                                                                        fontSize:
-                                                                            12,
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                        padding:
-                                                                            EdgeInsets.only(bottom: 4)),
-                                                                    Text(
-                                                                      '${prepareData[index].bodyModel.productName}',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .grey[700],
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Padding(
-                                                                    padding: EdgeInsets.only(
-                                                                        right:
-                                                                            55)),
-                                                                Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                      'Số lượng',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: AppColors
-                                                                            .secondaryText,
-                                                                        fontSize:
-                                                                            12,
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                        padding:
-                                                                            EdgeInsets.only(bottom: 4)),
-                                                                    Text(
-                                                                      '${prepareData[index].bodyModel.amount}',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .grey[700],
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        bottom:
-                                                                            8)),
-                                                            Row(
-                                                              children: [
-                                                                Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                      'Đơn giá',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: AppColors
-                                                                            .secondaryText,
-                                                                        fontSize:
-                                                                            12,
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                        padding:
-                                                                            EdgeInsets.only(bottom: 4)),
-                                                                    Text(
-                                                                      '${prepareData[index].bodyModel.unitPrice}',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .grey[700],
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                                Padding(
-                                                                    padding: EdgeInsets.only(
-                                                                        right:
-                                                                            90)),
-                                                                Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                      'Thành tiền',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: AppColors
-                                                                            .secondaryText,
-                                                                        fontSize:
-                                                                            12,
-                                                                      ),
-                                                                    ),
-                                                                    Padding(
-                                                                        padding:
-                                                                            EdgeInsets.only(bottom: 4)),
-                                                                    Text(
-                                                                      '${prepareData[index].bodyModel.totalMoney}',
-                                                                      style:
-                                                                          TextStyle(
-                                                                        color: Colors
-                                                                            .grey[700],
-                                                                        fontSize:
-                                                                            14,
-                                                                      ),
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        bottom:
-                                                                            8)),
-                                                            Divider(
-                                                              height: 12,
-                                                              thickness: 1,
-                                                              color: Colors
-                                                                  .grey[300],
-                                                            ),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        bottom:
-                                                                            8)),
-                                                            Text(
-                                                              'Nhà cung cấp',
-                                                              style: TextStyle(
-                                                                color: AppColors
-                                                                    .secondaryText,
-                                                                fontSize: 12,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        bottom:
-                                                                            4)),
-                                                            Text(
-                                                              '${prepareData[index].bodyModel.supplier}',
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .grey[700],
-                                                                fontSize: 14,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        bottom:
-                                                                            12)),
-                                                            Text(
-                                                              'Email',
-                                                              style: TextStyle(
-                                                                color: AppColors
-                                                                    .secondaryText,
-                                                                fontSize: 12,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        bottom:
-                                                                            4)),
-                                                            Text(
-                                                              '${prepareData[index].bodyModel.Email}',
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .grey[700],
-                                                                fontSize: 14,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        bottom:
-                                                                            8)),
-                                                            Text(
-                                                              'Số điện thoại',
-                                                              style: TextStyle(
-                                                                color: AppColors
-                                                                    .secondaryText,
-                                                                fontSize: 12,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        bottom:
-                                                                            4)),
-                                                            Text(
-                                                              '${prepareData[index].bodyModel.Phone}',
-                                                              style: TextStyle(
-                                                                color: Colors
-                                                                    .grey[700],
-                                                                fontSize: 14,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        bottom:
-                                                                            12)),
-                                                            Divider(
-                                                              height: 12,
-                                                              thickness: 1,
-                                                              color: Colors
-                                                                  .grey[300],
-                                                            ),
-                                                            Container(
-                                                              width: 170,
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      top: 12,
-                                                                      right: 12,
-                                                                      bottom:
-                                                                          12),
-                                                              child:
-                                                                  IntrinsicHeight(
-                                                                child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: <
-                                                                        Widget>[
-                                                                      Container(
-                                                                        width:
-                                                                            80,
-                                                                        padding:
-                                                                            EdgeInsets.only(left: 2),
-                                                                        child:
-                                                                            Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.stretch,
-                                                                          children: <
-                                                                              Widget>[
-                                                                            Text(
-                                                                              'Ngày yêu cầu',
-                                                                              style: TextStyle(
-                                                                                color: AppColors.secondaryText,
-                                                                                fontSize: 12,
-                                                                              ),
-                                                                            ),
-                                                                            Padding(padding: EdgeInsets.only(bottom: 4)),
-                                                                            Text(
-                                                                              '${prepareData[index].bodyModel.requestDate}',
-                                                                              style: TextStyle(
-                                                                                color: Colors.grey[700],
-                                                                                fontSize: 14,
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                      VerticalDivider(
-                                                                        width:
-                                                                            13,
-                                                                        thickness:
-                                                                            1,
-                                                                        indent:
-                                                                            3,
-                                                                        endIndent:
-                                                                            3,
-                                                                        color: Colors
-                                                                            .grey[300],
-                                                                      ),
-                                                                      Container(
-                                                                        width:
-                                                                            90,
-                                                                        padding:
-                                                                            EdgeInsets.only(left: 0),
-                                                                        child:
-                                                                            Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.stretch,
-                                                                          children: <
-                                                                              Widget>[
-                                                                            Text(
-                                                                              'Ngày nhận hàng',
-                                                                              style: TextStyle(
-                                                                                color: AppColors.secondaryText,
-                                                                                fontSize: 12,
-                                                                              ),
-                                                                            ),
-                                                                            Padding(padding: EdgeInsets.only(bottom: 4)),
-                                                                            Text(
-                                                                              '${prepareData[index].bodyModel.recieveDate}',
-                                                                              style: TextStyle(
-                                                                                color: Colors.grey[700],
-                                                                                fontSize: 14,
-                                                                              ),
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ]),
-                                                              ),
-                                                            ),
-                                                          ]),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ));
+                                  builder: (_) =>
+                                      MyLichDialog(selectedIndex: index, listData: prepareData));
                               /*====================END SHOW DIALOG=====================*/
                             },
                           ),

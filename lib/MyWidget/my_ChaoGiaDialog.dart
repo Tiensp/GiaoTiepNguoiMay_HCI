@@ -2,15 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gtnm_hci/MyWidget/request_model.dart';
 
-class MyDialog extends StatefulWidget {
+class MyChaoGiaDialog extends StatefulWidget {
   final int selected;
 
-  const MyDialog ({ Key key, this.selected }): super(key: key);
+  const MyChaoGiaDialog ({ Key key, this.selected }): super(key: key);
   @override
-  _MyDialogState createState() => new _MyDialogState();
+  _MyChaoGiaDialogState createState() => new _MyChaoGiaDialogState();
 }
 
-class _MyDialogState extends State<MyDialog> {
+class _MyChaoGiaDialogState extends State<MyChaoGiaDialog> {
   int selectedIndex;
   final List<RequestModel> prepareData = [
     RequestModel(

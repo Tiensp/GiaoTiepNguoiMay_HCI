@@ -244,7 +244,7 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                               showDialog(
                                       context: context,
                                       builder: (_) =>
-                                          MyDialog(selected: selectedSupplier))
+                                          MyChaoGiaDialog(selected: selectedSupplier))
                                   .then((value) {
                                 setState(() {
                                   selectedSupplier = value;
