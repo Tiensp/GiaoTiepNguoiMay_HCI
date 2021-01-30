@@ -1,77 +1,28 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gtnm_hci/MyWidget/request_model.dart';
+import 'package:flutter/widgets.dart';
+import 'package:gtnm_hci/MyWidget/chaoGia_model.dart';
 
 class MyChaoGiaDialog extends StatefulWidget {
   final int selected;
+  final List<UsersChaoGiaModel> listData;
 
-  const MyChaoGiaDialog ({ Key key, this.selected }): super(key: key);
+  const MyChaoGiaDialog ({ Key key, this.selected, this.listData}): super(key: key);
   @override
   _MyChaoGiaDialogState createState() => new _MyChaoGiaDialogState();
 }
 
 class _MyChaoGiaDialogState extends State<MyChaoGiaDialog> {
   int selectedIndex;
-  final List<RequestModel> prepareData = [
-    RequestModel(
-        ID: '#8566',
-        companyName: 'Công ty CP NT',
-        approval: true,
-        bodyModel: RequestBodyModel(
-            title_work: 'Đặt lô mới',
-            productName: 'Vải lụa đẹp',
-            rePresentative: 'Ngọc Toàn',
-            Email: 'abc@gmail.com',
-            Phone: '0123456789',
-            requestDate: '22/12/2020',
-            recieveDate: '25/12/2020',
-            detail: '- 1 tấn')),
-    RequestModel(
-        ID: '#8566',
-        companyName: 'Công ty TMDV QN',
-        approval: false,
-        bodyModel: RequestBodyModel(
-            title_work: 'Đặt lô mới',
-            productName: 'Vải lụa đẹp',
-            rePresentative: 'Quang Nhân',
-            Email: 'abc@gmail.com',
-            Phone: '0123456789',
-            requestDate: '22/12/2020',
-            recieveDate: '25/12/2020',
-            detail: '- 1 tấn')),
-    RequestModel(
-        ID: '#8566',
-        companyName: 'Công ty TMDV QN',
-        approval: false,
-        bodyModel: RequestBodyModel(
-            title_work: 'Đặt lô mới',
-            productName: 'Vải lụa đẹp',
-            rePresentative: 'Quang Nhân',
-            Email: 'abc@gmail.com',
-            Phone: '0123456789',
-            requestDate: '22/12/2020',
-            recieveDate: '25/12/2020',
-            detail: '- 1 tấn')),
-    RequestModel(
-        ID: '#8566',
-        companyName: 'Công ty TMDV QN',
-        approval: false,
-        bodyModel: RequestBodyModel(
-            title_work: 'Đặt lô mới',
-            productName: 'Vải lụa đẹp',
-            rePresentative: 'Quang Nhân',
-            Email: 'abc@gmail.com',
-            Phone: '0123456789',
-            requestDate: '22/12/2020',
-            recieveDate: '25/12/2020',
-            detail: '- 1 tấn'))
-  ];
+  List<UsersChaoGiaModel> prepareData;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     selectedIndex = widget.selected;
+    prepareData = widget.listData;
   }
 
   @override
@@ -136,7 +87,11 @@ class _MyChaoGiaDialogState extends State<MyChaoGiaDialog> {
                                       Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          CircleAvatar(backgroundColor: Colors.grey, radius: 25,),
+                                          CircleAvatar(
+                                            backgroundColor: Colors.grey,
+                                            radius: 25,
+                                            backgroundImage: AssetImage(prepareData[index].linkAvatar),
+                                          ),
                                         ],
                                       ),
                                       Padding(padding: EdgeInsets.only(right: 8)),
@@ -153,24 +108,23 @@ class _MyChaoGiaDialogState extends State<MyChaoGiaDialog> {
                                           Row(
                                             children: [
                                               Text("SĐT: ", style: TextStyle(fontSize: 10)),
-                                              Text(prepareData[index].bodyModel.Phone, style: TextStyle(fontSize: 12)),
+                                              Text(prepareData[index].Phone, style: TextStyle(fontSize: 12)),
                                             ],
                                           ),
                                           Row(
                                             children: [
                                               Text("Email: ", style: TextStyle(fontSize: 10)),
-                                              Text(prepareData[index].bodyModel.Email, style: TextStyle(fontSize: 12)),
+                                              Text(prepareData[index].Email, style: TextStyle(fontSize: 12)),
                                             ],
                                           ),
                                           Row(
                                             children: [
                                               Text("Website: ", style: TextStyle(fontSize: 10)),
-                                              Text(prepareData[index].bodyModel.detail, style: TextStyle(fontSize: 12)),
+                                              Text(prepareData[index].webSite, style: TextStyle(fontSize: 12)),
                                             ],
                                           ),
                                         ],
                                       ),
-                                      Padding(padding: EdgeInsets.only(right: 5)),
                                       Column(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
@@ -191,7 +145,7 @@ class _MyChaoGiaDialogState extends State<MyChaoGiaDialog> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Text("Báo giá: ", style: TextStyle(fontSize: 12)),
-                                      Text(prepareData[index].bodyModel.Phone, style: TextStyle(fontSize: 14)),
+                                      Text(prepareData[index].price, style: TextStyle(fontSize: 14)),
                                       Text(" VNĐ", style: TextStyle(fontSize: 12))
                                     ],
                                   )

@@ -8,7 +8,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:gtnm_hci/values/values.dart';
-import 'package:gtnm_hci/MyWidget/request_model.dart';
+import 'package:gtnm_hci/MyWidget/chaoGia_model.dart';
 import 'package:gtnm_hci/MyWidget/my_ChaoGiaDialog.dart';
 
 class MoiChaoGiaWidget extends StatefulWidget {
@@ -19,61 +19,6 @@ class MoiChaoGiaWidget extends StatefulWidget {
 class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
   int selectedSupplier = 0;
   bool showMoreAvatar = false;
-
-  final List<RequestModel> prepareData = [
-    RequestModel(
-        ID: '#8566',
-        companyName: 'Công ty CP NT',
-        approval: true,
-        bodyModel: RequestBodyModel(
-            title_work: 'Đặt lô mới',
-            productName: 'Vải lụa đẹp',
-            rePresentative: 'Ngọc Toàn',
-            Email: 'abc@gmail.com',
-            Phone: '0123456789',
-            requestDate: '22/12/2020',
-            recieveDate: '25/12/2020',
-            detail: '- 1 tấn')),
-    RequestModel(
-        ID: '#8566',
-        companyName: 'Công ty TMDV QN',
-        approval: false,
-        bodyModel: RequestBodyModel(
-            title_work: 'Đặt lô mới',
-            productName: 'Vải lụa đẹp',
-            rePresentative: 'Quang Nhân',
-            Email: 'abc@gmail.com',
-            Phone: '0123456789',
-            requestDate: '22/12/2020',
-            recieveDate: '25/12/2020',
-            detail: '- 1 tấn')),
-    RequestModel(
-        ID: '#8566',
-        companyName: 'Công ty TMDV QN',
-        approval: false,
-        bodyModel: RequestBodyModel(
-            title_work: 'Đặt lô mới',
-            productName: 'Vải lụa đẹp',
-            rePresentative: 'Quang Nhân',
-            Email: 'abc@gmail.com',
-            Phone: '0123456789',
-            requestDate: '22/12/2020',
-            recieveDate: '25/12/2020',
-            detail: '- 1 tấn')),
-    RequestModel(
-        ID: '#8566',
-        companyName: 'Công ty TMDV QN',
-        approval: false,
-        bodyModel: RequestBodyModel(
-            title_work: 'Đặt lô mới',
-            productName: 'Vải lụa đẹp',
-            rePresentative: 'Quang Nhân',
-            Email: 'abc@gmail.com',
-            Phone: '0123456789',
-            requestDate: '22/12/2020',
-            recieveDate: '25/12/2020',
-            detail: '- 1 tấn'))
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -98,42 +43,47 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          Text(
-                            'Cung cấp vải gấm',
-                            style: TextStyle(
-                              fontFamily: "Open Sans",
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16,
-                            ),
-                          ),
-                          SizedBox(width: 80),
-                          Container(
-                            padding: EdgeInsets.all(3),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.transparent, width: 0.5),
-                              color: prepareData[index].approval
-                                  ? (Colors.greenAccent[100])
-                                  : (Colors.yellow[200]),
-                              shape: BoxShape.rectangle,
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: Text(
-                              prepareData[index].approval
-                                  ? ('  Đã phê duyệt  ')
-                                  : ('Chưa phê duyệt'),
-                              style: TextStyle(
-                                color: AppColors.primaryText,
-                                fontFamily: "Open Sans",
-                                fontWeight: FontWeight.w600,
-                                fontSize: 13,
-                                letterSpacing: -0.16491,
+                      Container(
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 200,
+                              child: Text(
+                                prepareData[index].productName,
+                                style: TextStyle(
+                                  fontFamily: "Open Sans",
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
+                            Container(
+                              width: 100,
+                              padding: EdgeInsets.all(3),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                    color: Colors.transparent, width: 0.5),
+                                color: prepareData[index].approval
+                                    ? (Colors.greenAccent[100])
+                                    : (Colors.yellow[200]),
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: Text(
+                                prepareData[index].approval
+                                    ? ('  Đã phê duyệt  ')
+                                    : ('Chưa phê duyệt'),
+                                style: TextStyle(
+                                  color: AppColors.primaryText,
+                                  fontFamily: "Open Sans",
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 13,
+                                  letterSpacing: -0.16491,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                       Padding(padding: EdgeInsets.only(bottom: 10)),
                       Text(
@@ -157,7 +107,7 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                             ),
                           ),
                           Text(
-                            prepareData[index].bodyModel.requestDate,
+                            prepareData[index].expirationDate,
                             style: TextStyle(
                               color: AppColors.secondaryText,
                               fontFamily: "Open Sans",
@@ -179,7 +129,7 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                             ),
                           ),
                           Text(
-                            prepareData.length.toString(),
+                            prepareDataUser.length.toString(),
                             style: TextStyle(
                               color: Colors.indigo,
                               fontFamily: "Open Sans",
@@ -214,22 +164,27 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                             height: 36,
                             child: ListView.builder(
                                 scrollDirection: Axis.horizontal,
-                                itemCount: prepareData.length,
+                                itemCount: prepareDataUser.length,
                                 itemBuilder: (context, index) {
                                   if (index > 2) {
                                     if (showMoreAvatar == false) {
-                                      return InkWell(
-                                        onTap: () {
-                                          setState(() {
-                                            showMoreAvatar = true;
-                                          });
-                                          return avatarWithCheckIcon(index);
-                                        },
-                                        child: CircleAvatar(
-                                            backgroundColor: Colors.indigo,
-                                            child: Icon(Icons.more_horiz,
-                                                color: Colors.white)),
-                                      );
+                                      if (index == 3) {
+                                        return InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              showMoreAvatar = true;
+                                            });
+                                            return avatarWithCheckIcon(index);
+                                          },
+                                          child: CircleAvatar(
+                                              backgroundColor: Colors.indigo,
+                                              child: Icon(Icons.more_horiz,
+                                                  color: Colors.white)),
+                                        );
+                                      }
+                                      else {
+                                        return Container();
+                                      }
                                     } else {
                                       return avatarWithCheckIcon(index);
                                     }
@@ -244,7 +199,8 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                               showDialog(
                                       context: context,
                                       builder: (_) =>
-                                          MyChaoGiaDialog(selected: selectedSupplier))
+                                          MyChaoGiaDialog(selected: selectedSupplier,
+                                              listData: prepareDataUser))
                                   .then((value) {
                                 setState(() {
                                   selectedSupplier = value;
@@ -287,7 +243,9 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
             decoration: BoxDecoration(
                 color: Colors.grey,
                 borderRadius: BorderRadius.all(Radius.circular(17.9915))),
-            child: Container(),
+            child: CircleAvatar(
+              foregroundColor: Colors.white,
+                child: Image.asset(prepareDataUser[index].linkAvatar))
           ),
         ),
         selectedSupplier == index
@@ -310,42 +268,89 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
       ]),
     );
   }
-}
 
-// Expanded(
-// flex: 1,
-// child: Container(
-// margin: EdgeInsets.only(left: 23, top: 23, right: 21, bottom: 9),
-// child: Row(
-// crossAxisAlignment: CrossAxisAlignment.stretch,
-// children: [
-// Container(
-// width: 36,
-// margin: EdgeInsets.only(top: 2, bottom: 9),
-// child: Stack(
-// alignment: Alignment.center,
-// children: [
-// Positioned(
-// left: 0,
-// top: 0,
-// child: Container(
-// width: 36,
-// height: 36,
-// decoration: BoxDecoration(
-// color: Color.fromARGB(255, 14, 62, 134),
-// borderRadius: BorderRadius.all(Radius.circular(17.9915)),
-// ),
-// child: Container(),
-// ),
-// ),
-// Positioned(
-// left: 22,
-// top: 0,
-// child: Container(
-// width: 11,
-// height: 11,
-// decoration: BoxDecoration(
-// color: AppColors.secondaryElement,
-// borderRadius: BorderRadius.all(Radius.circular(18)),
-// ),
-// child: Container(),
+  final List<ChaoGiaModel> prepareData = [
+    ChaoGiaModel(
+        ID: '#1',
+        productName: 'Cung cấp vải gấm',
+        approval: true,
+        expirationDate: '22/12/2020'),
+    ChaoGiaModel(
+        ID: '#2',
+        productName: 'Cung cấp khóa kéo',
+        approval: false,
+        expirationDate: '29/10/2020'),
+    ChaoGiaModel(
+        ID: '#3',
+        productName: 'Cung cấp da bò',
+        approval: true,
+        expirationDate: '05/12/2020'),
+    ChaoGiaModel(
+        ID: '#4',
+        productName: 'Cung cấp tơ lụa',
+        approval: false,
+        expirationDate: '16/12/2020'),
+    ChaoGiaModel(
+        ID: '#5',
+        productName: 'Cung cấp giấy bóng',
+        approval: false,
+        expirationDate: '10/11/2020'),
+  ];
+
+  final List<UsersChaoGiaModel> prepareDataUser = [
+    UsersChaoGiaModel(
+        IDChaoGia: '#1',
+        companyName: 'TNHH Kỷ Nguyên',
+        Email: 'abc@gmail.com',
+        Phone: '0123456789',
+        webSite: 'abc.com.vn',
+        price: '30.000.000',
+        linkAvatar: 'assets/1.png'
+    ),
+    UsersChaoGiaModel(
+        IDChaoGia: '#1',
+        companyName: 'TMCP Ngọc Toàn',
+        Email: 'abc@gmail.com',
+        Phone: '0123456789',
+        webSite: 'abc.com.vn',
+        price: '25.000.000',
+        linkAvatar: 'assets/2.png'
+    ),
+    UsersChaoGiaModel(
+        IDChaoGia: '#1',
+        companyName: 'TNHH Quang Tiến',
+        Email: 'abc@gmail.com',
+        Phone: '0123456789',
+        webSite: 'abc.com.vn',
+        price: '32.000.000',
+        linkAvatar: 'assets/3.png'
+    ),
+    UsersChaoGiaModel(
+        IDChaoGia: '#1',
+        companyName: 'TMCP Quang Nhân',
+        Email: 'abc@gmail.com',
+        Phone: '0123456789',
+        webSite: 'abc.com.vn',
+        price: '28.000.000',
+        linkAvatar: 'assets/4.png'
+    ),
+    UsersChaoGiaModel(
+        IDChaoGia: '#1',
+        companyName: 'TNHH UIT',
+        Email: 'abc@gmail.com',
+        Phone: '0123456789',
+        webSite: 'abc.com.vn',
+        price: '35.000.000',
+        linkAvatar: 'assets/5.png'
+    ),
+    UsersChaoGiaModel(
+        IDChaoGia: '#1',
+        companyName: 'TNHH KTX',
+        Email: 'abc@gmail.com',
+        Phone: '0123456789',
+        webSite: 'abc.com.vn',
+        price: '35.000.000',
+        linkAvatar: 'assets/6.png'
+    ),
+  ];
+}
