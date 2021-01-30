@@ -96,403 +96,405 @@ class _DanhSachDonMuaHangViewState extends State<DanhSachDonMuaHangView> {
               color: Colors.grey[300],
             ),
           ),
-          Container(
-            height: 530,
-            color: Colors.white,
-            padding: EdgeInsets.all(15),
-            child: ListView.builder(
-              itemCount: prepareData.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Column(
-                  children: [
-                    ExpansionPanelList(
-                      elevation: 0,
-                      animationDuration: Duration(seconds: 1),
-                      children: [
-                        ExpansionPanel(
-                          body: Container(
-                            padding: EdgeInsets.only(
-                                left: 15, right: 15, top: 0, bottom: 15),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Container(
-                                  width: 350,
-                                  padding: EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                      border:
-                                      Border.all(color: Colors.blue[100]),
-                                      borderRadius: BorderRadius.circular(8.0)),
-                                  child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                      children: <Widget>[
-                                        Row(
-                                          children: [
-                                            Container(
-                                                width: 300,
-                                                height: 70,
-                                                child:
-                                                process_Timelines(prepareData[index].bodyModel.processStatus, 300)),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Tên sản phẩm',
-                                                  style: TextStyle(
-                                                    color: AppColors.secondaryText,
-                                                    fontSize: 15,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                    padding:
-                                                    EdgeInsets.only(bottom: 8)),
-                                                Text(
-                                                  '${prepareData[index].bodyModel.productName}',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                    fontSize: 16,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Padding(
-                                                padding:
-                                                EdgeInsets.only(right: 85)),
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Số lượng',
-                                                  style: TextStyle(
-                                                    color: AppColors.secondaryText,
-                                                    fontSize: 15,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                    padding:
-                                                    EdgeInsets.only(bottom: 8)),
-                                                Text(
-                                                  '${prepareData[index].bodyModel.amount}',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                    fontSize: 16,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                            padding:
-                                            EdgeInsets.only(bottom: 8)),
-                                        Row(
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Đơn giá',
-                                                  style: TextStyle(
-                                                    color: AppColors.secondaryText,
-                                                    fontSize: 15,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                    padding:
-                                                    EdgeInsets.only(bottom: 8)),
-                                                Text(
-                                                  '${prepareData[index].bodyModel.unitPrice}',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                    fontSize: 16,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Padding(
-                                                padding:
-                                                EdgeInsets.only(right: 130)),
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Thành tiền',
-                                                  style: TextStyle(
-                                                    color: AppColors.secondaryText,
-                                                    fontSize: 15,
-                                                  ),
-                                                ),
-                                                Padding(
-                                                    padding:
-                                                    EdgeInsets.only(bottom: 8)),
-                                                Text(
-                                                  '${prepareData[index].bodyModel.totalMoney}',
-                                                  style: TextStyle(
-                                                    color: Colors.grey[700],
-                                                    fontSize: 16,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                        Padding(
-                                            padding:
-                                            EdgeInsets.only(bottom: 8)),
-                                        Divider(
-                                          height: 12,
-                                          thickness: 1,
-                                          color: Colors.grey[300],
-                                        ),
-                                        Padding(
-                                            padding:
-                                            EdgeInsets.only(bottom: 8)),
-                                        Text(
-                                          'Nhà cung cấp',
-                                          style: TextStyle(
-                                            color: AppColors.secondaryText,
-                                            fontSize: 15,
+          Expanded(
+            child: Container(
+              height: 530,
+              color: Colors.white,
+              padding: EdgeInsets.all(15),
+              child: ListView.builder(
+                itemCount: prepareData.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Column(
+                    children: [
+                      ExpansionPanelList(
+                        elevation: 0,
+                        animationDuration: Duration(seconds: 1),
+                        children: [
+                          ExpansionPanel(
+                            body: Container(
+                              padding: EdgeInsets.only(
+                                  left: 15, right: 15, top: 0, bottom: 15),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Container(
+                                    width: 350,
+                                    padding: EdgeInsets.all(15),
+                                    decoration: BoxDecoration(
+                                        border:
+                                        Border.all(color: Colors.blue[100]),
+                                        borderRadius: BorderRadius.circular(8.0)),
+                                    child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                        children: <Widget>[
+                                          Row(
+                                            children: [
+                                              Container(
+                                                  width: 300,
+                                                  height: 70,
+                                                  child:
+                                                  process_Timelines(prepareData[index].bodyModel.processStatus, 300)),
+                                            ],
                                           ),
-                                        ),
-                                        Padding(
-                                            padding:
-                                            EdgeInsets.only(bottom: 8)),
-                                        Text(
-                                          '${prepareData[index].bodyModel.supplier}',
-                                          style: TextStyle(
-                                            color: Colors.grey[700],
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                        Padding(
-                                            padding:
-                                            EdgeInsets.only(bottom: 12)),
-                                        Text(
-                                          'Email',
-                                          style: TextStyle(
-                                            color: AppColors.secondaryText,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        Padding(
-                                            padding:
-                                            EdgeInsets.only(bottom: 8)),
-                                        Text(
-                                          '${prepareData[index].bodyModel.Email}',
-                                          style: TextStyle(
-                                            color: Colors.grey[700],
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                        Padding(
-                                            padding:
-                                            EdgeInsets.only(bottom: 8)),
-                                        Text(
-                                          'Số điện thoại',
-                                          style: TextStyle(
-                                            color: AppColors.secondaryText,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        Padding(
-                                            padding:
-                                            EdgeInsets.only(bottom: 8)),
-                                        Text(
-                                          '${prepareData[index].bodyModel.Phone}',
-                                          style: TextStyle(
-                                            color: Colors.grey[700],
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                        Padding(
-                                            padding:
-                                            EdgeInsets.only(bottom: 12)),
-                                        Divider(
-                                          height: 12,
-                                          thickness: 1,
-                                          color: Colors.grey[300],
-                                        ),
-                                        Container(
-                                          width: 250,
-                                          padding: EdgeInsets.only(top: 12, right: 12, bottom: 12),
-                                          child: IntrinsicHeight(
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
-                                                children: <Widget>[
-                                                  Container(
-                                                    width: 110,
-                                                    padding: EdgeInsets.only(
-                                                        left: 2),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .stretch,
-                                                      children: <Widget>[
-                                                        Text(
-                                                          'Ngày yêu cầu',
-                                                          style: TextStyle(
-                                                            color: AppColors
-                                                                .secondaryText,
-                                                            fontSize: 15,
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                            padding:
-                                                            EdgeInsets.only(
-                                                                bottom: 8)),
-                                                        Text(
-                                                          '${prepareData[index].bodyModel.requestDate}',
-                                                          style: TextStyle(
-                                                            color: Colors
-                                                                .grey[700],
-                                                            fontSize: 16,
-                                                          ),
-                                                        ),
-                                                      ],
+                                          Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Tên sản phẩm',
+                                                    style: TextStyle(
+                                                      color: AppColors.secondaryText,
+                                                      fontSize: 15,
                                                     ),
                                                   ),
-                                                  VerticalDivider(
-                                                    width: 13,
-                                                    thickness: 1,
-                                                    indent: 3,
-                                                    endIndent: 3,
-                                                    color: Colors.grey[300],
-                                                  ),
-                                                  Container(
-                                                    width: 120,
-                                                    padding: EdgeInsets.only(
-                                                        left: 10),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .stretch,
-                                                      children: <Widget>[
-                                                        Text(
-                                                          'Ngày nhận hàng',
-                                                          style: TextStyle(
-                                                            color: AppColors
-                                                                .secondaryText,
-                                                            fontSize: 15,
-                                                          ),
-                                                        ),
-                                                        Padding(
-                                                            padding:
-                                                            EdgeInsets.only(
-                                                                bottom: 8)),
-                                                        Text(
-                                                          '${prepareData[index].bodyModel.recieveDate}',
-                                                          style: TextStyle(
-                                                            color: Colors
-                                                                .grey[700],
-                                                            fontSize: 16,
-                                                          ),
-                                                        ),
-                                                      ],
+                                                  Padding(
+                                                      padding:
+                                                      EdgeInsets.only(bottom: 8)),
+                                                  Text(
+                                                    '${prepareData[index].bodyModel.productName}',
+                                                    style: TextStyle(
+                                                      color: Colors.grey[700],
+                                                      fontSize: 16,
                                                     ),
                                                   ),
-                                                ]),
+                                                ],
+                                              ),
+                                              Padding(
+                                                  padding:
+                                                  EdgeInsets.only(right: 85)),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Số lượng',
+                                                    style: TextStyle(
+                                                      color: AppColors.secondaryText,
+                                                      fontSize: 15,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                      padding:
+                                                      EdgeInsets.only(bottom: 8)),
+                                                  Text(
+                                                    '${prepareData[index].bodyModel.amount}',
+                                                    style: TextStyle(
+                                                      color: Colors.grey[700],
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                      ]),
-                                ),
-                              ],
-                            ),
-                          ),
-                          headerBuilder:
-                              (BuildContext context, bool isExpanded) {
-                            return Container(
-                                padding: EdgeInsets.only(
-                                    left: 12, top: 20, bottom: 20),
-                                child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.stretch,
-                                    children: [
-                                      Row(
-                                        children: [
+                                          Padding(
+                                              padding:
+                                              EdgeInsets.only(bottom: 8)),
+                                          Row(
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Đơn giá',
+                                                    style: TextStyle(
+                                                      color: AppColors.secondaryText,
+                                                      fontSize: 15,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                      padding:
+                                                      EdgeInsets.only(bottom: 8)),
+                                                  Text(
+                                                    '${prepareData[index].bodyModel.unitPrice}',
+                                                    style: TextStyle(
+                                                      color: Colors.grey[700],
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                  padding:
+                                                  EdgeInsets.only(right: 130)),
+                                              Column(
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Thành tiền',
+                                                    style: TextStyle(
+                                                      color: AppColors.secondaryText,
+                                                      fontSize: 15,
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                      padding:
+                                                      EdgeInsets.only(bottom: 8)),
+                                                  Text(
+                                                    '${prepareData[index].bodyModel.totalMoney}',
+                                                    style: TextStyle(
+                                                      color: Colors.grey[700],
+                                                      fontSize: 16,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                              padding:
+                                              EdgeInsets.only(bottom: 8)),
+                                          Divider(
+                                            height: 12,
+                                            thickness: 1,
+                                            color: Colors.grey[300],
+                                          ),
+                                          Padding(
+                                              padding:
+                                              EdgeInsets.only(bottom: 8)),
                                           Text(
-                                            prepareData[index].ID,
-                                            textAlign: TextAlign.left,
+                                            'Nhà cung cấp',
                                             style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  153, 110, 131, 149),
-                                              fontFamily: "Open Sans",
-                                              fontWeight: FontWeight.w700,
+                                              color: AppColors.secondaryText,
                                               fontSize: 15,
-                                              letterSpacing: -0.16491,
                                             ),
                                           ),
                                           Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 67.0)),
-                                          Container(
-                                            padding: EdgeInsets.all(3),
-                                            decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color: Colors.transparent,
-                                                  width: 0.5),
-                                              color: prepareData[index].approval
-                                                  ? (Colors.greenAccent[100])
-                                                  : (Colors.yellow[200]),
-                                              shape: BoxShape.rectangle,
-                                              borderRadius:
-                                              BorderRadius.circular(10.0),
+                                              padding:
+                                              EdgeInsets.only(bottom: 8)),
+                                          Text(
+                                            '${prepareData[index].bodyModel.supplier}',
+                                            style: TextStyle(
+                                              color: Colors.grey[700],
+                                              fontSize: 16,
                                             ),
-                                            child: Text(
-                                              prepareData[index].approval
-                                                  ? ('  Đã phê duyệt  ')
-                                                  : ('Chưa phê duyệt'),
+                                          ),
+                                          Padding(
+                                              padding:
+                                              EdgeInsets.only(bottom: 12)),
+                                          Text(
+                                            'Email',
+                                            style: TextStyle(
+                                              color: AppColors.secondaryText,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          Padding(
+                                              padding:
+                                              EdgeInsets.only(bottom: 8)),
+                                          Text(
+                                            '${prepareData[index].bodyModel.Email}',
+                                            style: TextStyle(
+                                              color: Colors.grey[700],
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          Padding(
+                                              padding:
+                                              EdgeInsets.only(bottom: 8)),
+                                          Text(
+                                            'Số điện thoại',
+                                            style: TextStyle(
+                                              color: AppColors.secondaryText,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                          Padding(
+                                              padding:
+                                              EdgeInsets.only(bottom: 8)),
+                                          Text(
+                                            '${prepareData[index].bodyModel.Phone}',
+                                            style: TextStyle(
+                                              color: Colors.grey[700],
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          Padding(
+                                              padding:
+                                              EdgeInsets.only(bottom: 12)),
+                                          Divider(
+                                            height: 12,
+                                            thickness: 1,
+                                            color: Colors.grey[300],
+                                          ),
+                                          Container(
+                                            width: 250,
+                                            padding: EdgeInsets.only(top: 12, right: 12, bottom: 12),
+                                            child: IntrinsicHeight(
+                                              child: Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                                  children: <Widget>[
+                                                    Container(
+                                                      width: 110,
+                                                      padding: EdgeInsets.only(
+                                                          left: 2),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .stretch,
+                                                        children: <Widget>[
+                                                          Text(
+                                                            'Ngày yêu cầu',
+                                                            style: TextStyle(
+                                                              color: AppColors
+                                                                  .secondaryText,
+                                                              fontSize: 15,
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                              padding:
+                                                              EdgeInsets.only(
+                                                                  bottom: 8)),
+                                                          Text(
+                                                            '${prepareData[index].bodyModel.requestDate}',
+                                                            style: TextStyle(
+                                                              color: Colors
+                                                                  .grey[700],
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    VerticalDivider(
+                                                      width: 13,
+                                                      thickness: 1,
+                                                      indent: 3,
+                                                      endIndent: 3,
+                                                      color: Colors.grey[300],
+                                                    ),
+                                                    Container(
+                                                      width: 120,
+                                                      padding: EdgeInsets.only(
+                                                          left: 10),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .stretch,
+                                                        children: <Widget>[
+                                                          Text(
+                                                            'Ngày nhận hàng',
+                                                            style: TextStyle(
+                                                              color: AppColors
+                                                                  .secondaryText,
+                                                              fontSize: 15,
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                              padding:
+                                                              EdgeInsets.only(
+                                                                  bottom: 8)),
+                                                          Text(
+                                                            '${prepareData[index].bodyModel.recieveDate}',
+                                                            style: TextStyle(
+                                                              color: Colors
+                                                                  .grey[700],
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ]),
+                                            ),
+                                          ),
+                                        ]),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            headerBuilder:
+                                (BuildContext context, bool isExpanded) {
+                              return Container(
+                                  padding: EdgeInsets.only(
+                                      left: 12, top: 20, bottom: 20),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              prepareData[index].ID,
+                                              textAlign: TextAlign.left,
                                               style: TextStyle(
-                                                color: AppColors.primaryText,
+                                                color: Color.fromARGB(
+                                                    153, 110, 131, 149),
                                                 fontFamily: "Open Sans",
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 13,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 15,
                                                 letterSpacing: -0.16491,
                                               ),
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(bottom: 8),
-                                      ),
-                                      Text(
-                                        prepareData[index].productName,
-                                        style: TextStyle(
-                                          color: Colors.black54,
-                                          fontSize: 18,
+                                            Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 67.0)),
+                                            Container(
+                                              padding: EdgeInsets.all(3),
+                                              decoration: BoxDecoration(
+                                                border: Border.all(
+                                                    color: Colors.transparent,
+                                                    width: 0.5),
+                                                color: prepareData[index].approval
+                                                    ? (Colors.greenAccent[100])
+                                                    : (Colors.yellow[200]),
+                                                shape: BoxShape.rectangle,
+                                                borderRadius:
+                                                BorderRadius.circular(10.0),
+                                              ),
+                                              child: Text(
+                                                prepareData[index].approval
+                                                    ? ('  Đã phê duyệt  ')
+                                                    : ('Chưa phê duyệt'),
+                                                style: TextStyle(
+                                                  color: AppColors.primaryText,
+                                                  fontFamily: "Open Sans",
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 13,
+                                                  letterSpacing: -0.16491,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                    ]));
-                          },
-                          isExpanded: prepareData[index].isExpanded,
-                          canTapOnHeader: true,
-                        ),
-                      ],
-                      expansionCallback: (int item, bool status) {
-                        setState(() {
-                          prepareData[index].isExpanded =
-                          !prepareData[index].isExpanded;
-                        });
-                      },
-                    ),
-                    Container(
-                      width: 320,
-                      child: Divider(
-                        height: 20,
-                        thickness: 1,
-                        color: Colors.grey[300],
+                                        Padding(
+                                          padding: EdgeInsets.only(bottom: 8),
+                                        ),
+                                        Text(
+                                          prepareData[index].productName,
+                                          style: TextStyle(
+                                            color: Colors.black54,
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ]));
+                            },
+                            isExpanded: prepareData[index].isExpanded,
+                            canTapOnHeader: true,
+                          ),
+                        ],
+                        expansionCallback: (int item, bool status) {
+                          setState(() {
+                            prepareData[index].isExpanded =
+                            !prepareData[index].isExpanded;
+                          });
+                        },
                       ),
-                    )
-                  ],
-                );
-              },
+                      Container(
+                        width: 320,
+                        child: Divider(
+                          height: 20,
+                          thickness: 1,
+                          color: Colors.grey[300],
+                        ),
+                      )
+                    ],
+                  );
+                },
+              ),
             ),
           ),
         ]),
