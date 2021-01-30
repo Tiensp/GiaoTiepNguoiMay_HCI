@@ -68,7 +68,7 @@ class _DanhSachYeuCauViewState extends State<DanhSachYeuCauView> {
                       );
                     },
                     child: Icon(
-                      Icons.add,
+                      Icons.search,
                       color: Colors.white,
                     )),
               ),

@@ -73,7 +73,7 @@ class _DanhSachDonMuaHangViewState extends State<DanhSachDonMuaHangView> {
                       );
                     },
                     child: Icon(
-                      Icons.add,
+                      Icons.search,
                       color: Colors.white,
                     )),
               ),

@@ -32,31 +32,6 @@ class _AnimatedSearchBarState extends State<AnimatedSearchBar> {
               )
             ),
           ),
-          Container(
-            child: Material(
-              type: MaterialType.transparency,
-              child: InkWell(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(15),
-                  topRight: Radius.circular(15),
-                  bottomLeft: Radius.circular(15),
-                  bottomRight: Radius.circular(15),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Icon(
-                    Icons.search,
-                    color: Colors.blue[900],
-                  ),
-                ),
-                onTap: () {
-                  setState(() {
-
-                  });
-                },
-              ),
-            ),
-          )
         ],
       ),
     );
