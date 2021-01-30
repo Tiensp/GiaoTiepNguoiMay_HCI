@@ -12,11 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:gtnm_hci/tao_moi_yeu_cau_khach_hang_view/tao_moi_yeu_cau_khach_hang_view.dart';
 import 'package:gtnm_hci/values/values.dart';
 import 'package:gtnm_hci/MyWidget/purchase_order_model.dart';
-import 'package:gtnm_hci/MyWidget/SearchBar.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:gtnm_hci/MyWidget/my_Drawer.dart';
-import 'package:gtnm_hci/MyWidget/my_AppBar.dart';
-import 'package:gtnm_hci/MyWidget/my_BottomNavigationBar.dart';
 import 'package:gtnm_hci/MyWidget/Process_Timelines.dart';
 
 
@@ -48,7 +44,31 @@ class _DanhSachDonMuaHangViewState extends State<DanhSachDonMuaHangView> {
             color: Colors.white,
             padding: EdgeInsets.only(left: 25, top: 12, bottom: 12, right: 25),
             child: Row(children: [
-              AnimatedSearchBar(),
+              Container(
+                width: 260,
+                height: 56,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: kElevationToShadow[1],
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                          padding: EdgeInsets.only(left: 16),
+                          child: TextField(
+                            decoration: InputDecoration(
+                                hintText: 'Tìm kiếm',
+                                hintStyle: TextStyle(
+                                  color: Color.fromARGB(255, 38, 64, 139),
+                                ),
+                                border: InputBorder.none),
+                          )),
+                    ),
+                  ],
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.only(bottom: 20, left: 20),
               ),

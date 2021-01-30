@@ -8,14 +8,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:gtnm_hci/tao_moi_yeu_cau_khach_hang_view/tao_moi_yeu_cau_khach_hang_view.dart';
-import 'package:gtnm_hci/lich_view/lich_view.dart';
 import 'package:gtnm_hci/values/values.dart';
 import 'package:gtnm_hci/MyWidget/request_model.dart';
-import 'package:gtnm_hci/MyWidget/SearchBar.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:gtnm_hci/MyWidget/my_Drawer.dart';
-import 'package:gtnm_hci/MyWidget/my_AppBar.dart';
-import 'package:gtnm_hci/MyWidget/my_BottomNavigationBar.dart';
 
 class DanhSachYeuCauView extends StatefulWidget {
   @override
@@ -25,11 +20,19 @@ class DanhSachYeuCauView extends StatefulWidget {
 class _DanhSachYeuCauViewState extends State<DanhSachYeuCauView> {
   List<String> _choices;
   int _defaultChoices;
+  TextEditingController _controller;
+
   @override
   void initState() {
     super.initState();
     _defaultChoices = 0;
     _choices = ['Mã số', 'Doanh nghiệp', 'Tiêu đề', 'Sản phẩm', 'Khách hàng'];
+    _controller = TextEditingController();
+  }
+
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -44,7 +47,32 @@ class _DanhSachYeuCauViewState extends State<DanhSachYeuCauView> {
             color: Colors.white,
             padding: EdgeInsets.only(left: 25, top: 12, bottom: 12, right: 25),
             child: Row(children: [
-              AnimatedSearchBar(),
+              Container(
+                width: 260,
+                height: 56,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                  boxShadow: kElevationToShadow[1],
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                          padding: EdgeInsets.only(left: 16),
+                          child: TextField(
+                            decoration: InputDecoration(
+                                hintText: 'Tìm kiếm',
+                                hintStyle: TextStyle(
+                                  color: Color.fromARGB(255, 38, 64, 139),
+                                ),
+                                border: InputBorder.none),
+                                controller: _controller
+                          )),
+                    ),
+                  ],
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.only(bottom: 20, left: 20),
               ),
@@ -110,7 +138,8 @@ class _DanhSachYeuCauViewState extends State<DanhSachYeuCauView> {
                               padding: EdgeInsets.only(
                                   left: 15, right: 15, top: 0, bottom: 15),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   Container(
                                     width: 350,
@@ -118,7 +147,8 @@ class _DanhSachYeuCauViewState extends State<DanhSachYeuCauView> {
                                     decoration: BoxDecoration(
                                         border:
                                             Border.all(color: Colors.blue[100]),
-                                        borderRadius: BorderRadius.circular(8.0)),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0)),
                                     child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.stretch,
@@ -235,9 +265,10 @@ class _DanhSachYeuCauViewState extends State<DanhSachYeuCauView> {
                                                             ),
                                                           ),
                                                           Padding(
-                                                              padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom: 8)),
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      bottom:
+                                                                          8)),
                                                           Text(
                                                             '${prepareData[index].bodyModel.requestDate}',
                                                             style: TextStyle(
@@ -274,9 +305,10 @@ class _DanhSachYeuCauViewState extends State<DanhSachYeuCauView> {
                                                             ),
                                                           ),
                                                           Padding(
-                                                              padding:
-                                                                  EdgeInsets.only(
-                                                                      bottom: 8)),
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      bottom:
+                                                                          8)),
                                                           Text(
                                                             '${prepareData[index].bodyModel.recieveDate}',
                                                             style: TextStyle(
@@ -353,7 +385,8 @@ class _DanhSachYeuCauViewState extends State<DanhSachYeuCauView> {
                                                 border: Border.all(
                                                     color: Colors.transparent,
                                                     width: 0.5),
-                                                color: prepareData[index].approval
+                                                color: prepareData[index]
+                                                        .approval
                                                     ? (Colors.greenAccent[100])
                                                     : (Colors.yellow[200]),
                                                 shape: BoxShape.rectangle,
