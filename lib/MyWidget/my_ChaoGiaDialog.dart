@@ -184,7 +184,10 @@ class _MyDialogState extends State<MyDialog> {
               alignment: Alignment.bottomRight,
               child: RaisedButton(
                   color: Colors.indigo,
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.of(context)
+                        .pop(this.selectedIndex);
+                  },
                   child: Text(
                     'Chọn nhà cung cấp',
                     style: TextStyle(

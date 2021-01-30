@@ -259,7 +259,11 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                             onPressed: () {
                               showDialog(
                                   context: context,
-                                  builder: (_) => MyDialog()).then((value) => null);
+                                  builder: (_) => MyDialog()).then((value) {
+                                    setState(() {
+                                      selectedSupplier = value;
+                                    });
+                              });
                             },
                             child: Text('Xem chi tiết',
                                 style: TextStyle(
