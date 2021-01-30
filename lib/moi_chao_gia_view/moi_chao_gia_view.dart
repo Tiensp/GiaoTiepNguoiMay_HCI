@@ -269,7 +269,7 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
     );
   }
 
-  final List<ChaoGiaModel> prepareData = [
+  List<ChaoGiaModel> prepareData = [
     ChaoGiaModel(
         ID: '#1',
         productName: 'Cung cấp vải gấm',
@@ -297,7 +297,7 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
         expirationDate: '10/11/2020'),
   ];
 
-  final List<UsersChaoGiaModel> prepareDataUser = [
+   List<UsersChaoGiaModel> prepareDataUser = [
     UsersChaoGiaModel(
         IDChaoGia: '#1',
         companyName: 'TNHH Kỷ Nguyên',

@@ -33,7 +33,7 @@ class _DanhSachDonMuaHangViewState extends State<DanhSachDonMuaHangView> {
   void initState() {
     super.initState();
     _defaultChoices = 0;
-    _choices = ['Mã số', 'Doanh nghiệp', 'Tiêu đề', 'Sản phẩm', 'Khách hàng'];
+    _choices = ['Mã số', 'Sản phẩm', 'Nhà cung cấp', 'Trạng thái', 'Số điện thoại'];
   }
 
   @override
