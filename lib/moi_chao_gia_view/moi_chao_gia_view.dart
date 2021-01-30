@@ -45,6 +45,32 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
             Phone: '0123456789',
             requestDate: '22/12/2020',
             recieveDate: '25/12/2020',
+            detail: '- 1 tấn')),
+    RequestModel(
+        ID: '#8566',
+        companyName: 'Công ty TMDV QN',
+        approval: false,
+        bodyModel: RequestBodyModel(
+            title_work: 'Đặt lô mới',
+            productName: 'Vải lụa đẹp',
+            rePresentative: 'Quang Nhân',
+            Email: 'abc@gmail.com',
+            Phone: '0123456789',
+            requestDate: '22/12/2020',
+            recieveDate: '25/12/2020',
+            detail: '- 1 tấn')),
+    RequestModel(
+        ID: '#8566',
+        companyName: 'Công ty TMDV QN',
+        approval: false,
+        bodyModel: RequestBodyModel(
+            title_work: 'Đặt lô mới',
+            productName: 'Vải lụa đẹp',
+            rePresentative: 'Quang Nhân',
+            Email: 'abc@gmail.com',
+            Phone: '0123456789',
+            requestDate: '22/12/2020',
+            recieveDate: '25/12/2020',
             detail: '- 1 tấn'))
   ];
 
@@ -189,7 +215,7 @@ class _MoiChaoGiaWidgetState extends State<MoiChaoGiaWidget> {
                               scrollDirection: Axis.horizontal,
                               itemCount: prepareData.length,
                                 itemBuilder: (context, index) {
-                                return Container(
+                                return index > 2 ? CircleAvatar(backgroundColor: Colors.indigo, child: Icon(Icons.more_horiz, color: Colors.white)): Container(
                                   width: 40,
                                   child: Stack(
                                     alignment: Alignment.center,
