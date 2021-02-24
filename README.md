@@ -1,11 +1,11 @@
 # GiaoTiepNguoiMay_HCI
  Đồ án Giao tiếp Người - Máy
-
-![143489768_253519369507131_7413701576983331497_n](https://user-images.githubusercontent.com/51352139/108971639-18132c80-76b5-11eb-8eb5-95fe699f1e5a.jpg)
-![144588362_234735104956970_5379396783614814773_n](https://user-images.githubusercontent.com/51352139/108971644-19dcf000-76b5-11eb-91e9-746f8062dbaa.jpg)
-![144248314_1421518301531046_6178164450038606282_n](https://user-images.githubusercontent.com/51352139/108971649-1a758680-76b5-11eb-8763-3ff8e4d7c345.jpg)
-![144417474_464397124968370_6736485885549556659_n](https://user-images.githubusercontent.com/51352139/108971651-1a758680-76b5-11eb-99c2-c44fb100f74b.jpg)
-![144627816_415822806161290_2196355688103830770_n](https://user-images.githubusercontent.com/51352139/108971653-1b0e1d00-76b5-11eb-9f0b-2556754b3bef.jpg)
-![144264725_740987476790644_4525536765174476679_n](https://user-images.githubusercontent.com/51352139/108971655-1ba6b380-76b5-11eb-9af7-90e289ce50cf.jpg)
-![144611446_408427806884435_4308220173671105825_n](https://user-images.githubusercontent.com/51352139/108971657-1ba6b380-76b5-11eb-9f74-995cb666ebec.jpg)
-![144661310_121810689812602_8960064411044698603_n](https://user-images.githubusercontent.com/51352139/108971658-1c3f4a00-76b5-11eb-9243-0ec1abc084f5.jpg)
+ 
+<img src="https://user-images.githubusercontent.com/51352139/108971658-1c3f4a00-76b5-11eb-9243-0ec1abc084f5.jpg" alt="Photo" width="250" />
+<img src="https://user-images.githubusercontent.com/51352139/108971657-1ba6b380-76b5-11eb-9f74-995cb666ebec.jpg" alt="Photo" width="250" />
+<img src="https://user-images.githubusercontent.com/51352139/108971655-1ba6b380-76b5-11eb-9af7-90e289ce50cf.jpg" alt="Photo" width="250" />
+<img src="https://user-images.githubusercontent.com/51352139/108971653-1b0e1d00-76b5-11eb-9f0b-2556754b3bef.jpg" alt="Photo" width="250" />
+<img src="https://user-images.githubusercontent.com/51352139/108971651-1a758680-76b5-11eb-99c2-c44fb100f74b.jpg" alt="Photo" width="250" />
+<img src="https://user-images.githubusercontent.com/51352139/108971649-1a758680-76b5-11eb-8763-3ff8e4d7c345.jpg" alt="Photo" width="250" />
+<img src="https://user-images.githubusercontent.com/51352139/108971644-19dcf000-76b5-11eb-91e9-746f8062dbaa.jpg" alt="Photo" width="250" />
+<img src="https://user-images.githubusercontent.com/51352139/108971639-18132c80-76b5-11eb-8eb5-95fe699f1e5a.jpg" alt="Photo" width="250" />
