@@ -2,7 +2,7 @@
  Đồ án Giao tiếp Người - Máy
  
  1. Màn hình Yêu cầu mua hàng
- <br>
+ 
 <img src="https://user-images.githubusercontent.com/51352139/108974274-e18ae100-76b7-11eb-99ce-373ac75f658d.jpg" alt="Photo" width="250" /> &nbsp;&nbsp;&nbsp;&nbsp; <img src="https://user-images.githubusercontent.com/51352139/108974798-64ac3700-76b8-11eb-95f6-a11efa14fe40.jpg" alt="Photo" width="250" />
 
 
